@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" data-mood="day">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Serino's Deli &amp; Wine Bar | 5 Station Road, Eaglescliffe (Concept Demo)</title>
-  <meta name="description" content="Concept website for Serino's Deli &amp; Wine Bar at 5 Station Road, Eaglescliffe — morning coffee, brunch and deli counter to evening wine, antipasti and pizza.">
+  <meta name="description" content="Concept website for Serino's Deli &amp; Wine Bar at 5 Station Road, Eaglescliffe — morning coffee, brunch and deli counter by day to evening wine, antipasti and pizza.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <script>
+    try {
+      var m = localStorage.getItem('serinos_mood');
+      if (m === 'night' || m === 'day') document.documentElement.setAttribute('data-mood', m);
+    } catch (e) {}
+  </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -16,21 +22,51 @@
     <p>Concept design by Mark Aszkenasy – not the official website of Serino's Deli &amp; Wine Bar.</p>
   </div>
 
-  <div class="station-strip">
-    <div class="container station-strip__inner">
-      <span>5 Station Road, Eaglescliffe TS16 0BU · Right next to Eaglescliffe Station</span>
-      <span>Enquiries &amp; Tables: <a href="tel:01642788864">01642 788864</a></span>
+  <header class="milanese-masthead">
+    <div class="masthead-dateline">
+      <div class="container masthead-dateline__inner">
+        <span>Stazione di Eaglescliffe · 5 Station Road <span class="masthead-dateline__extra">TS16 0BU</span></span>
+        <span class="masthead-dateline__extra">Mattina · Pranzo · Enoteca</span>
+        <span>Tables: <a href="tel:01642788864">01642 788864</a></span>
+      </div>
     </div>
-  </div>
 
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand-lockup" href="index.html">
-        <img class="brand-lockup__mark" src="images/logo-mark.svg" width="72" height="72" alt="Serino's Deli &amp; Wine Bar monogram">
-        <span class="brand-lockup__text">
-          <span class="brand-lockup__name">Serino's</span>
-          <span class="brand-lockup__sub">Deli · Brunch · Wine Bar</span>
+    <div class="container masthead-stage">
+      <a class="masthead-mobile-crest" href="index.html" aria-label="Serino's home">
+        <img src="images/logo-mark.svg" width="36" height="36" alt="">
+      </a>
+
+      <nav class="masthead-nav" id="primary-nav" data-site-nav aria-label="Primary navigation">
+        <ul class="masthead-nav__list">
+          <li>
+            <a class="masthead-nav__link" href="index.html" aria-current="page">
+              <span class="masthead-nav__num" aria-hidden="true">I.</span> Overview
+            </a>
+          </li>
+          <li>
+            <a class="masthead-nav__link" href="menus.html">
+              <span class="masthead-nav__num" aria-hidden="true">II.</span> La Carta
+            </a>
+          </li>
+          <li>
+            <a class="masthead-nav__link" href="bookings.html">
+              <span class="masthead-nav__num" aria-hidden="true">III.</span> Bookings
+            </a>
+          </li>
+          <li>
+            <a class="masthead-nav__link" href="#visit">
+              <span class="masthead-nav__num" aria-hidden="true">IV.</span> Find Us
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <a class="masthead-brand" href="index.html">
+        <span class="masthead-brand__arch" aria-hidden="true">
+          <img src="images/logo-mark.svg" width="28" height="28" alt="">
         </span>
+        <span class="masthead-brand__wordmark">Serino's</span>
+        <span class="masthead-brand__sub">Deli · Brunch · Enoteca</span>
       </a>
 
       <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
@@ -40,164 +76,209 @@
         <span>Menu</span>
       </button>
 
-      <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Primary navigation">
-        <ul class="site-nav__list">
-          <li><a class="site-nav__link" href="index.html" aria-current="page">Overview</a></li>
-          <li><a class="site-nav__link" href="menus.html">Menus</a></li>
-          <li><a class="site-nav__link" href="bookings.html">Bookings &amp; Wine Nights</a></li>
-          <li><a class="site-nav__link" href="#visit">Find Us</a></li>
-        </ul>
-        <a class="site-nav__cta" href="bookings.html">Reserve a Table</a>
-      </nav>
+      <div class="masthead-mood-wrap">
+        <div class="mood-switcher" role="group" aria-label="Switch atmosphere mode">
+          <button class="mood-switcher__btn" type="button" data-mood-btn="day" aria-pressed="true">
+            <span aria-hidden="true">☀</span> Daytime Deli
+          </button>
+          <button class="mood-switcher__btn" type="button" data-mood-btn="night" aria-pressed="false">
+            <span aria-hidden="true">☾</span> Wine &amp; Pizza
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
   <main id="main-content">
-    <!-- Hero: Day-to-Night Station Bistro -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="container hero__grid">
-        <div>
-          <div class="day-night-pill">
-            <span class="day-night-pill__day">Daytime Deli &amp; Brunch</span>
-            <span class="day-night-pill__sep" aria-hidden="true">⟶</span>
-            <span class="day-night-pill__night">Evening Wine &amp; Pizza</span>
-          </div>
-          <h1 id="hero-heading">Steps from Eaglescliffe Station — morning coffee &amp; brunch to evening wine &amp; pizza.</h1>
-          <p class="hero__lead">
-            Set at 5 Station Road right beside Eaglescliffe railway station, Serino's Deli &amp; Wine Bar brings together morning espresso, vibrant brunch plates and an Italian-inspired deli counter by day — transitioning into relaxed wine nights, antipasti and pizza after dusk.
-          </p>
-          <div class="btn-group">
-            <a class="btn btn--primary" href="bookings.html">Reserve a Table</a>
-            <a class="btn btn--outline" href="menus.html">Explore Day &amp; Night Menus</a>
-          </div>
-          <div class="hero__meta">
-            <div>
-              <strong>Station-Side Address</strong>
-              5 Station Road, Eaglescliffe, Stockton-on-Tees TS16 0BU
-            </div>
-            <div>
-              <strong>Direct Telephone</strong>
-              <a href="tel:01642788864">01642 788864</a>
-            </div>
-          </div>
-        </div>
-
-        <figure class="editorial-figure">
-          <img
-            src="images/hero.jpg"
-            width="1440"
-            height="803"
-            alt="Warm sunlit bistro table with flat white coffee and freshly prepared brunch plates"
-          >
-          <figcaption>
-            <span>Morning coffee &amp; brunch atmosphere</span>
-            <span>Illustrative image · Concept visual</span>
-          </figcaption>
-        </figure>
+    <!-- Slim Centered "This Is Yarm" Triple-Crown Ribbon -->
+    <div class="triple-crown-ribbon" role="region" aria-label="Verified local reader poll rankings">
+      <div class="container triple-crown-ribbon__inner">
+        <span class="triple-crown-ribbon__badge">★ #1 Breakfast</span>
+        <span aria-hidden="true">·</span>
+        <span class="triple-crown-ribbon__badge">★ #2 Coffee</span>
+        <span aria-hidden="true">·</span>
+        <span class="triple-crown-ribbon__badge">★ #3 Pizza</span>
+        <span class="triple-crown-ribbon__source">— Voted on This Is Yarm</span>
       </div>
-    </section>
+    </div>
 
-    <!-- Verified Local Acclaim: This Is Yarm Reader Polls -->
-    <section class="acclaim-band merlot-surface" aria-labelledby="acclaim-heading">
+    <!-- Centered Broadsheet Crown Deck -->
+    <section class="broadsheet-crown" aria-labelledby="hero-heading">
       <div class="container">
-        <div class="acclaim-band__header">
-          <p class="acclaim-band__kicker">Verified Local Community Polls</p>
-          <h2 class="acclaim-band__title" id="acclaim-heading">Voted by Local Readers on This Is Yarm</h2>
-        </div>
-
-        <div class="acclaim-grid">
-          <article class="acclaim-plaque">
-            <span class="acclaim-plaque__rank">#1</span>
-            <h3 class="acclaim-plaque__cat">Breakfast</h3>
-            <span class="acclaim-plaque__src">Voted on This Is Yarm</span>
-          </article>
-
-          <article class="acclaim-plaque">
-            <span class="acclaim-plaque__rank">#2</span>
-            <h3 class="acclaim-plaque__cat">Coffee</h3>
-            <span class="acclaim-plaque__src">Voted on This Is Yarm</span>
-          </article>
-
-          <article class="acclaim-plaque">
-            <span class="acclaim-plaque__rank">#3</span>
-            <h3 class="acclaim-plaque__cat">Pizza</h3>
-            <span class="acclaim-plaque__src">Voted on This Is Yarm</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Chapter I: Daytime Deli & Brunch -->
-    <section class="section" aria-labelledby="daytime-heading">
-      <div class="container">
-        <p class="eyebrow">Part I · Daytime Service</p>
-        <h2 id="daytime-heading">Morning Coffee, Brunch &amp; Deli Counter</h2>
-        <p style="max-width: 64ch; color: var(--ink-muted); margin-top: 0;">
-          Whether catching a morning train from Eaglescliffe Station, meeting friends for a leisurely brunch, or picking up fresh deli favourites at lunch, daytime at Serino's centres on unhurried hospitality and quality ingredients.
+        <h1 id="hero-heading">Two Italian Rituals Under One Station Arch</h1>
+        <p>
+          Right beside Eaglescliffe railway station at 5 Station Road — sunlit morning espresso, brunch and deli counter by day; candlelit wines, antipasti and stone-baked pizza after dusk.
         </p>
-
-        <div class="chapter-cards chapter-cards--two">
-          <article class="editorial-card">
-            <h3>Brunch &amp; Barista Coffee</h3>
-            <p>
-              Recognised locally with <strong>#1 Breakfast</strong> and <strong>#2 Coffee</strong> in This Is Yarm community polls. View our structured menu space ready for the kitchen's current daytime board:
-              <span class="ph">[Signature brunch &amp; coffee highlights – owner to supply]</span>
-            </p>
-          </article>
-
-          <article class="editorial-card editorial-card--merlot">
-            <h3>Deli Counter &amp; Local Delivery</h3>
-            <p>
-              Fresh counter sandwiches, salads and deli treats to enjoy in-house, take away for the train, or order locally via Uber Eats:
-              <span class="ph">[Uber Eats link – owner to confirm]</span>
-            </p>
-          </article>
-        </div>
-
-        <div class="btn-group">
-          <a class="btn btn--outline" href="menus.html#panel-brunch">View Brunch &amp; Deli Menu Layout</a>
+        <div class="diptych-mobile-jumps" aria-label="Jump to daytime or evening section">
+          <a class="diptych-jump-link diptych-jump-link--day" href="#world-mattina">☀ I · Daytime Deli ↓</a>
+          <a class="diptych-jump-link diptych-jump-link--night" href="#world-sera">☾ II · Evening Wine ↓</a>
         </div>
       </div>
     </section>
 
-    <!-- Chapter II: Evening Wine Bar, Antipasti & Pizza -->
-    <section class="section dark-surface" aria-labelledby="evening-heading">
-      <div class="container split-chapter">
-        <figure class="editorial-figure editorial-figure--feature">
-          <img
-            src="images/feature.jpg"
-            width="1200"
-            height="896"
-            alt="Evening bistro table with glasses of red wine, antipasti sharing board and stone-baked pizza"
-            loading="lazy"
-          >
-          <figcaption>
-            <span>Evening wine bar, antipasti &amp; pizza mood</span>
-            <span>Illustrative image · Concept visual</span>
-          </figcaption>
-        </figure>
+    <!-- 50/50 Dual Station-Arch Split Diptych -->
+    <section class="diptych-stage" aria-label="Daytime Deli and Evening Wine Bar worlds">
+      <!-- LEFT WORLD: MATTINA & PRANZO -->
+      <article class="diptych-world diptych-world--mattina" id="world-mattina" aria-labelledby="mattina-heading">
+        <div class="diptych-world__inner">
+          <div class="diptych-world__meta">
+            <span class="diptych-roman">I · Daytime</span>
+            <span class="diptych-seal">★ #1 Breakfast &amp; #2 Coffee · This Is Yarm</span>
+          </div>
 
-        <div>
-          <p class="eyebrow">Part II · Evening Service</p>
-          <h2 id="evening-heading">Wine Nights, Antipasti &amp; Stone-Baked Pizza</h2>
-          <p style="color: #E5DBD1; margin-bottom: 1.25rem;">
-            As afternoon turns to evening on Station Road, the lights soften for curated wines by the glass and bottle, generous antipasti boards, and stone-baked pizzas — voted <strong>#3 Pizza</strong> on This Is Yarm.
+          <figure class="arch-window">
+            <div class="arch-window__pane">
+              <img
+                src="images/hero.jpg"
+                width="1440"
+                height="803"
+                alt="Warm sunlit café table with barista flat white coffee and freshly prepared brunch plates"
+              >
+            </div>
+            <figcaption>
+              <span>Morning espresso &amp; brunch mood</span>
+              <span>Illustrative image</span>
+            </figcaption>
+          </figure>
+
+          <p class="diptych-world__kicker">Mattina &amp; Pranzo · 5 Station Road</p>
+          <h2 id="mattina-heading">Morning Coffee, Brunch &amp; Italian Deli Counter</h2>
+          <p class="diptych-world__story">
+            Steps from the Eaglescliffe platform for early rail commuters and unhurried mid-morning catch-ups. Enjoy barista coffee, locally celebrated brunch plates, fresh deli counter focaccia and panini to dine in, take on the train, or order locally via Uber Eats.
           </p>
 
-          <div class="chapter-cards">
-            <article class="editorial-card">
-              <h3>Wine List &amp; Sharing Boards</h3>
-              <p>
-                Space dedicated to your current pours, flights and grazing platters:
-                <span class="ph">[Featured wines &amp; evening antipasti – owner to supply]</span>
-              </p>
-            </article>
+          <div class="diptych-world__hours">
+            <strong>Daytime Service:</strong> <span class="ph">[Exact current daytime &amp; wine-evening hours – owner to confirm]</span>
           </div>
 
-          <div class="btn-group">
-            <a class="btn btn--gold" href="bookings.html#panel-reserve">Book an Evening Table</a>
-            <a class="btn btn--ghost-light" href="bookings.html#panel-hire">Wine Night &amp; Private Hire Enquiry</a>
+          <div class="diptych-world__actions">
+            <a class="btn btn--primary" href="menus.html#panel-brunch">Explore Morning &amp; Deli Menu →</a>
+            <a class="btn btn--outline" href="bookings.html?sitting=morning-brunch#panel-reserve">Book Brunch Table</a>
           </div>
+        </div>
+      </article>
+
+      <!-- RIGHT WORLD: SERA & ENOTECA -->
+      <article class="diptych-world diptych-world--sera" id="world-sera" aria-labelledby="sera-heading">
+        <div class="diptych-world__inner">
+          <div class="diptych-world__meta">
+            <span class="diptych-roman">II · Evening</span>
+            <span class="diptych-seal">★ #3 Pizza &amp; Wine Bar · This Is Yarm</span>
+          </div>
+
+          <figure class="arch-window">
+            <div class="arch-window__pane">
+              <img
+                src="images/feature.jpg"
+                width="1200"
+                height="896"
+                alt="Candlelit evening table with glasses of red wine, antipasti sharing board and stone-baked pizza"
+              >
+            </div>
+            <figcaption>
+              <span>Evening wine, antipasti &amp; pizza mood</span>
+              <span>Illustrative image</span>
+            </figcaption>
+          </figure>
+
+          <p class="diptych-world__kicker">Sera &amp; Enoteca · Candlelit Nights</p>
+          <h2 id="sera-heading">Wine Nights, Antipasti Boards &amp; Stone-Baked Pizza</h2>
+          <p class="diptych-world__story">
+            As evening settles over Eaglescliffe, the lights soften into an intimate station-side enoteca — pouring curated wines by the glass and bottle alongside generous charcuterie and cheese grazing boards and stone-baked artisan pizzas.
+          </p>
+
+          <div class="diptych-world__hours">
+            <strong>Evening Schedule:</strong> <span class="ph">[Evening service days &amp; last orders – owner to confirm]</span>
+          </div>
+
+          <div class="diptych-world__actions">
+            <a class="btn btn--gold" href="bookings.html?sitting=evening-late#panel-reserve">Reserve Evening Table →</a>
+            <a class="btn btn--ghost-light" href="menus.html#panel-evening">View Wine &amp; Pizza Carta</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Station Departure-Style Ledger Strip -->
+    <section class="departure-strip" aria-label="Station-side coordinates and delivery ledger">
+      <div class="container">
+        <div class="departure-board">
+          <div class="departure-cell">
+            <span class="departure-cell__label">Rail Proximity</span>
+            <span class="departure-cell__val">Steps from Eaglescliffe Platform</span>
+          </div>
+          <div class="departure-cell">
+            <span class="departure-cell__label">Station Address</span>
+            <span class="departure-cell__val">5 Station Road, Eaglescliffe TS16 0BU</span>
+          </div>
+          <div class="departure-cell">
+            <span class="departure-cell__label">Direct Desk</span>
+            <span class="departure-cell__val"><a href="tel:01642788864">Tel 01642 788864</a></span>
+          </div>
+          <div class="departure-cell">
+            <span class="departure-cell__label">Daytime Delivery</span>
+            <span class="departure-cell__val">Uber Eats · <span class="ph">[Uber Eats link – owner to confirm]</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Folded Printed Italian "La Carta" 3-Column Preview -->
+    <section class="section" aria-labelledby="carta-heading">
+      <div class="container">
+        <div class="section-header-center">
+          <p class="eyebrow">La Carta · Printed Menu Preview</p>
+          <h2 id="carta-heading">From First Espresso to Final Evening Pour</h2>
+          <p>
+            Structured like a classic three-leaf Italian paper menu so guests can inspect morning brunch, counter lunch or evening wine lists in seconds on mobile.
+          </p>
+        </div>
+
+        <div class="folded-carta">
+          <!-- Column 01 -->
+          <article class="carta-leaf">
+            <span class="carta-leaf__arch-num" aria-hidden="true">01</span>
+            <p class="carta-leaf__poll">★ #1 Breakfast · ★ #2 Coffee (This Is Yarm)</p>
+            <h3>Caffetteria &amp; Colazione</h3>
+            <p class="carta-leaf__intro">
+              Morning espresso, loose-leaf teas, commuter rolls and cooked-to-order brunch plates right beside the station.
+            </p>
+            <ul class="carta-mini-list">
+              <li><span class="ph">[Signature brunch plates &amp; sourdough dishes – owner to supply]</span></li>
+              <li><span class="ph">[Barista coffee roast, iced drinks &amp; takeaway rolls – owner to supply]</span></li>
+            </ul>
+            <a class="carta-leaf__link" href="menus.html#panel-brunch">Open Brunch Carta →</a>
+          </article>
+
+          <!-- Column 02 -->
+          <article class="carta-leaf">
+            <span class="carta-leaf__arch-num" aria-hidden="true">02</span>
+            <p class="carta-leaf__poll">Dine In · Train Takeaway · Local Delivery</p>
+            <h3>Banco Gastronomia</h3>
+            <p class="carta-leaf__intro">
+              Freshly filled Italian-inspired deli focaccia, toasted panini, counter salads and sweet bakes through midday.
+            </p>
+            <ul class="carta-mini-list">
+              <li><span class="ph">[Artisan focaccia, panini &amp; counter specials – owner to supply]</span></li>
+              <li>Local delivery partner: <span class="ph">[Uber Eats link – owner to confirm]</span></li>
+            </ul>
+            <a class="carta-leaf__link" href="menus.html#panel-deli">Open Deli Counter Carta →</a>
+          </article>
+
+          <!-- Column 03 -->
+          <article class="carta-leaf carta-leaf--enoteca">
+            <span class="carta-leaf__arch-num" aria-hidden="true">03</span>
+            <p class="carta-leaf__poll">★ #3 Pizza (This Is Yarm) · Wine Nights</p>
+            <h3>Enoteca &amp; Pizzeria</h3>
+            <p class="carta-leaf__intro">
+              Curated wines by the glass and bottle, generous charcuterie &amp; cheese boards, and stone-baked pizzas.
+            </p>
+            <ul class="carta-mini-list">
+              <li><span class="ph">[Featured wines, spritzes &amp; antipasti boards – owner to supply]</span></li>
+              <li><span class="ph">[Stone-baked pizza selection &amp; prices – owner to supply]</span></li>
+            </ul>
+            <a class="carta-leaf__link" href="menus.html#panel-evening">Open Evening Enoteca Carta →</a>
+          </article>
         </div>
       </div>
     </section>
@@ -205,13 +286,15 @@
     <!-- Visit, Hours & Station Directions -->
     <section class="section section--linen" id="visit" aria-labelledby="visit-heading">
       <div class="container">
-        <p class="eyebrow">Plan Your Visit</p>
-        <h2 id="visit-heading">Right Beside Eaglescliffe Station</h2>
+        <div class="section-header-center">
+          <p class="eyebrow">Stazione di Eaglescliffe</p>
+          <h2 id="visit-heading">Plan Your Visit to 5 Station Road</h2>
+        </div>
 
         <div class="ledger-grid">
           <div class="ledger-box">
-            <h3>Opening Hours &amp; Service Schedule</h3>
-            <p style="color: var(--ink-muted); margin-top: 0;">
+            <h3>Service Hours &amp; Delivery</h3>
+            <p style="color: var(--espresso-soft); margin-top: 0;">
               Daytime hours are listed on This Is Yarm alongside scheduled evening wine nights. Exact current daytime and evening kitchen times will be confirmed directly with the owner prior to launch:
             </p>
             <ul class="ledger-list">
@@ -220,7 +303,7 @@
                 <span class="ledger-val"><span class="ph">[Exact current daytime &amp; wine-evening hours – owner to confirm]</span></span>
               </li>
               <li>
-                <span class="ledger-label">Evening Wine &amp; Pizza Nights</span>
+                <span class="ledger-label">Evening Wine &amp; Pizza</span>
                 <span class="ledger-val"><span class="ph">[Evening service days &amp; last orders – owner to confirm]</span></span>
               </li>
               <li>
@@ -231,19 +314,19 @@
           </div>
 
           <div class="ledger-box">
-            <h3>Address &amp; Directions</h3>
-            <ul class="ledger-list" style="margin-top: 0.4rem;">
+            <h3>Address &amp; Rail Connections</h3>
+            <ul class="ledger-list" style="margin-top: 0.35rem;">
               <li>
                 <span class="ledger-label">Address</span>
                 <span class="ledger-val">5 Station Road, Eaglescliffe,<br>Stockton-on-Tees TS16 0BU</span>
               </li>
               <li>
                 <span class="ledger-label">Rail Access</span>
-                <span class="ledger-val">Steps from Eaglescliffe Railway Station (Northern, LNER &amp; Grand Central connections)</span>
+                <span class="ledger-val">Right next to Eaglescliffe Railway Station (Northern, LNER &amp; Grand Central connections)</span>
               </li>
               <li>
                 <span class="ledger-label">Telephone</span>
-                <span class="ledger-val"><a href="tel:01642788864">01642 788864</a></span>
+                <span class="ledger-val"><a href="tel:01642788864"><strong>01642 788864</strong></a></span>
               </li>
             </ul>
             <div class="btn-group">
@@ -270,7 +353,7 @@
             5 Station Road, Eaglescliffe, Stockton-on-Tees TS16 0BU<br>
             Telephone: <a href="tel:01642788864">01642 788864</a>
           </p>
-          <p style="margin: 0; font-size: 0.88rem; color: #CFC3B8;">
+          <p style="margin: 0; font-size: 0.88rem; color: #D4C8BC;">
             Hours: <span class="ph">[Exact current daytime &amp; wine-evening hours – owner to confirm]</span>
           </p>
         </div>
@@ -279,7 +362,7 @@
           <p class="footer-heading">Navigation</p>
           <ul class="footer-links">
             <li><a href="index.html">Overview</a></li>
-            <li><a href="menus.html">Day &amp; Evening Menus</a></li>
+            <li><a href="menus.html">La Carta (Day &amp; Evening Menus)</a></li>
             <li><a href="bookings.html">Table Bookings &amp; Private Hire</a></li>
             <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Serinos+5+Station+Road+Eaglescliffe+TS16+0BU" target="_blank" rel="noopener noreferrer">Directions (Google Maps)</a></li>
           </ul>

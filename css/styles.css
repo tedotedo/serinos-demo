@@ -1,6 +1,7 @@
 /* ==========================================================================
    Serino's Deli & Wine Bar — Concept Stylesheet
-   Aesthetic: Day-to-Night Station Bistro (Editorial Milanese Café & Enoteca)
+   Archetype: Interactive Day-to-Night Dual Railway Arch Diptych & Milanese Masthead
+   Self-hosted WOFF2 fonts only · Zero external requests · WCAG AA+ verified
    ========================================================================== */
 
 @font-face {
@@ -28,29 +29,62 @@
 }
 
 :root {
-  --bg-parchment: #FAF6F0;
-  --bg-linen: #F2EAE0;
-  --bg-card: #FFFDF9;
-  --ink-espresso: #1F191A;
-  --ink-muted: #524345;
-  --merlot: #5C1D28;
-  --merlot-deep: #43131C;
-  --sage: #354A39;
-  --sage-tint: #E7ECE8;
-  --gold-on-dark: #C9963B;
-  --gold-soft-dark: #E8C784;
-  --rule-light: #D9CFC1;
-  --rule-strong: #B8A896;
-  --rule-dark: #3B2D30;
+  /* Core Milanese Palette — Day (Mattina) & Night (Sera) */
+  --travertine: #FAF5EC;
+  --travertine-warm: #F1E8D8;
+  --carta-paper: #FFFDF8;
+  --espresso: #1C1617;
+  --espresso-soft: #4B3C3E;
+
+  --claret: #38121A;
+  --claret-deep: #260B11;
+  --claret-mid: #5A1C28;
+  --claret-card: #461721;
+
+  --brass: #8A621C;        /* Dark antique brass for light surfaces (5.5:1+ on travertine) */
+  --gold-bright: #E4BD70;  /* Burnished gold for dark claret surfaces (9.1:1 on claret) */
+  --gold-pale: #F5E3BA;
+
+  --sage-station: #2F4635;
+  --sage-wash: #E7EFE9;
+
+  --rule-hairline: #D4C7B4;
+  --rule-architectural: #A9967E;
+  --rule-claret: #6B303C;
+
   --error-red: #8F1D24;
   --error-bg: #FCEEEF;
+
+  /* Dynamic Chrome Tokens (shift smoothly with html[data-mood="night"]) */
+  --masthead-bg: #FAF5EC;
+  --masthead-fg: #1C1617;
+  --masthead-muted: #514043;
+  --masthead-rule: #B8A58E;
+  --masthead-accent: #5A1C28;
+  --dateline-bg: #F1E8D8;
+  --subhero-bg: #F3EBDD;
+  --subhero-fg: #1C1617;
+  --subhero-muted: #4B3C3E;
+  --subhero-kicker: #5A1C28;
 
   --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-  --container-max: 1240px;
-  --radius-sharp: 2px;
-  --shadow-editorial: 0 14px 34px rgba(31, 25, 26, 0.08);
+  --container-max: 1320px;
+  --shadow-carta: 0 18px 40px rgba(28, 22, 23, 0.09);
+}
+
+html[data-mood="night"] {
+  --masthead-bg: #260B11;
+  --masthead-fg: #FAF5EC;
+  --masthead-muted: #E3D6C6;
+  --masthead-rule: #6B303C;
+  --masthead-accent: #E4BD70;
+  --dateline-bg: #1A070B;
+  --subhero-bg: #311018;
+  --subhero-fg: #FAF5EC;
+  --subhero-muted: #E7DBD0;
+  --subhero-kicker: #E4BD70;
 }
 
 *,
@@ -71,15 +105,15 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.6;
-  color: var(--ink-espresso);
-  background-color: var(--bg-parchment);
+  color: var(--espresso);
+  background-color: var(--travertine);
   max-width: 100%;
   overflow-x: clip;
   padding-bottom: 4.75rem; /* Space for solid sticky mobile bar */
   -webkit-font-smoothing: antialiased;
 }
 
-@media (min-width: 860px) {
+@media (min-width: 980px) {
   body {
     padding-bottom: 0;
   }
@@ -93,26 +127,28 @@ svg {
 }
 
 a {
-  color: var(--merlot);
+  color: var(--claret-mid);
   text-underline-offset: 3px;
-  transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 a:hover {
-  color: var(--ink-espresso);
+  color: var(--espresso);
 }
 
 :focus-visible {
-  outline: 3px solid var(--merlot);
+  outline: 3px solid var(--claret-mid);
   outline-offset: 2px;
 }
 
-.dark-surface :focus-visible,
-.merlot-surface :focus-visible,
+html[data-mood="night"] .milanese-masthead :focus-visible,
+html[data-mood="night"] .page-masthead-deck :focus-visible,
+.diptych-world--sera :focus-visible,
+.departure-strip :focus-visible,
 .concept-banner :focus-visible,
 .site-footer :focus-visible,
 .mobile-action-bar :focus-visible {
-  outline: 3px solid var(--gold-soft-dark);
+  outline: 3px solid var(--gold-bright);
   outline-offset: 2px;
 }
 
@@ -121,10 +157,10 @@ a:hover {
   left: -9999px;
   top: 0;
   z-index: 2000;
-  background: var(--merlot);
+  background: var(--claret-mid);
   color: #FFFFFF;
   padding: 0.75rem 1.25rem;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -137,7 +173,7 @@ a:hover {
   width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 1.125rem;
+  padding: 0 1rem;
 }
 
 @media (min-width: 768px) {
@@ -152,38 +188,39 @@ a:hover {
 .ph {
   display: inline-block;
   font-family: var(--font-body);
-  font-size: 0.84em;
+  font-size: 0.82em;
   font-weight: 500;
   font-style: normal;
   line-height: 1.35;
-  padding: 0.14rem 0.48rem;
-  border-radius: var(--radius-sharp);
-  background-color: #EFE5D8;
-  color: var(--merlot);
-  border: 1px dashed #8B5962;
+  padding: 0.14rem 0.46rem;
+  border-radius: 2px;
+  background-color: #EFE5D5;
+  color: var(--claret-mid);
+  border: 1px dashed #8B525D;
   overflow-wrap: anywhere;
   word-break: break-word;
   vertical-align: baseline;
 }
 
-.dark-surface .ph,
-.merlot-surface .ph,
-.site-footer .ph {
-  background-color: #2D1F22;
-  color: #F7E7C8;
-  border-color: var(--gold-on-dark);
+.diptych-world--sera .ph,
+.departure-strip .ph,
+.site-footer .ph,
+html[data-mood="night"] .page-masthead-deck .ph {
+  background-color: #260B11;
+  color: var(--gold-pale);
+  border-color: var(--gold-bright);
 }
 
 /* ==========================================================================
    1. Persistent Top Concept Disclaimer Banner
    ========================================================================== */
 .concept-banner {
-  background-color: var(--ink-espresso);
-  color: var(--bg-parchment);
-  border-bottom: 1px solid var(--gold-on-dark);
-  font-size: 0.75rem;
+  background-color: #151011;
+  color: var(--travertine);
+  border-bottom: 1px solid var(--gold-bright);
+  font-size: 0.74rem;
   line-height: 1.35;
-  padding: 0.42rem 0.85rem;
+  padding: 0.4rem 0.75rem;
   text-align: center;
   letter-spacing: 0.01em;
 }
@@ -196,145 +233,204 @@ a:hover {
 
 @media (min-width: 768px) {
   .concept-banner {
-    font-size: 0.8125rem;
-    padding: 0.48rem 1.5rem;
+    font-size: 0.8rem;
+    padding: 0.45rem 1.5rem;
   }
 }
 
 /* ==========================================================================
-   2. Editorial Station Coordinate Strip & Header
+   2. Centered Milanese Broadsheet Masthead + Live Day/Night Mood Switcher
    ========================================================================== */
-.station-strip {
-  display: none;
-  background-color: var(--bg-linen);
-  border-bottom: 1px solid var(--rule-light);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  padding: 0.45rem 0;
-}
-
-@media (min-width: 860px) {
-  .station-strip {
-    display: block;
-  }
-}
-
-.station-strip__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-
-.station-strip a {
-  color: var(--ink-espresso);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.station-strip a:hover {
-  color: var(--merlot);
-  text-decoration: underline;
-}
-
-.site-header {
+.milanese-masthead {
   position: sticky;
   top: 0;
   z-index: 900;
-  background-color: var(--bg-parchment);
-  border-bottom: 1px solid var(--rule-strong);
+  background-color: var(--masthead-bg);
+  color: var(--masthead-fg);
+  border-bottom: 3px double var(--masthead-rule);
+  transition: background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease;
 }
 
-.site-header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 4.35rem;
-  gap: 0.75rem;
-}
-
-.brand-lockup {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  text-decoration: none;
-  color: var(--ink-espresso);
-  min-width: 0;
-}
-
-.brand-lockup__mark {
-  width: 2.5rem;
-  height: 2.5rem;
-  flex-shrink: 0;
-}
-
-.brand-lockup__text {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.brand-lockup__name {
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: 0.01em;
-  color: var(--ink-espresso);
-}
-
-.brand-lockup__sub {
+.masthead-dateline {
+  background-color: var(--dateline-bg);
+  border-bottom: 1px solid var(--masthead-rule);
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: var(--merlot);
-  margin-top: 0.12rem;
+  color: var(--masthead-muted);
+  padding: 0.32rem 0;
+  transition: background-color 0.28s ease, color 0.28s ease;
+}
+
+.masthead-dateline__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  text-align: center;
+}
+
+@media (min-width: 980px) {
+  .masthead-dateline {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+  .masthead-dateline__inner {
+    justify-content: space-between;
+  }
+}
+
+.masthead-dateline a {
+  color: var(--masthead-fg);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.masthead-dateline a:hover {
+  text-decoration: underline;
+}
+
+.masthead-dateline__extra {
+  display: none;
 }
 
 @media (min-width: 768px) {
-  .site-header__inner {
-    min-height: 5rem;
-  }
-  .brand-lockup__mark {
-    width: 2.85rem;
-    height: 2.85rem;
-  }
-  .brand-lockup__name {
-    font-size: 1.75rem;
-  }
-  .brand-lockup__sub {
-    font-size: 0.72rem;
+  .masthead-dateline__extra {
+    display: inline;
   }
 }
 
-.nav-toggle {
+/* Main Masthead Bar */
+.masthead-stage {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.65rem;
+  padding-bottom: 0.6rem;
+}
+
+@media (min-width: 980px) {
+  .masthead-stage {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1.5rem;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+}
+
+/* Mobile-only left crest icon to keep center wordmark balanced */
+.masthead-mobile-crest {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  background-color: var(--bg-card);
-  color: var(--ink-espresso);
-  border: 1px solid var(--ink-espresso);
-  border-radius: var(--radius-sharp);
-  padding: 0.55rem 0.8rem;
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  cursor: pointer;
-  min-height: 44px;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
 }
 
-.nav-toggle:hover {
-  background-color: var(--bg-linen);
+.masthead-mobile-crest img {
+  width: 36px;
+  height: 36px;
+}
+
+@media (min-width: 980px) {
+  .masthead-mobile-crest {
+    display: none;
+  }
+}
+
+/* Center Wordmark */
+.masthead-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: var(--masthead-fg);
+  justify-self: center;
+  min-width: 0;
+}
+
+.masthead-brand:hover {
+  color: var(--masthead-accent);
+}
+
+.masthead-brand__arch {
+  display: none;
+}
+
+@media (min-width: 980px) {
+  .masthead-brand__arch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.18rem;
+  }
+  .masthead-brand__arch img {
+    width: 28px;
+    height: 28px;
+  }
+  .masthead-brand__arch::before,
+  .masthead-brand__arch::after {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background-color: var(--masthead-rule);
+  }
+}
+
+.masthead-brand__wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 4vw, 2.55rem);
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.masthead-brand__sub {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--masthead-accent);
+  margin-top: 0.24rem;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand__sub {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+  }
+}
+
+/* Desktop Left Navigation Wing & Mobile Drawer */
+.nav-toggle {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: transparent;
+  color: var(--masthead-fg);
+  border: 1px solid var(--masthead-rule);
+  border-radius: 2px;
+  padding: 0.45rem 0.68rem;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  min-height: 42px;
 }
 
 .nav-toggle__bars {
-  width: 18px;
-  height: 12px;
+  width: 16px;
+  height: 11px;
   position: relative;
   display: inline-block;
 }
@@ -343,463 +439,716 @@ a:hover {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 2px;
-  background-color: var(--ink-espresso);
+  height: 1.8px;
+  background-color: currentColor;
   transition: transform 0.2s ease, opacity 0.2s ease, top 0.2s ease;
 }
 
 .nav-toggle__bars span:nth-child(1) { top: 0; }
-.nav-toggle__bars span:nth-child(2) { top: 5px; }
-.nav-toggle__bars span:nth-child(3) { top: 10px; }
+.nav-toggle__bars span:nth-child(2) { top: 4.5px; }
+.nav-toggle__bars span:nth-child(3) { top: 9px; }
 
 .nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(1) {
-  top: 5px;
+  top: 4.5px;
   transform: rotate(45deg);
 }
 .nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(2) {
   opacity: 0;
 }
 .nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(3) {
-  top: 5px;
+  top: 4.5px;
   transform: rotate(-45deg);
 }
 
-.site-nav {
+.masthead-nav {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  background-color: var(--bg-parchment);
-  border-bottom: 2px solid var(--merlot);
-  padding: 1rem 1.125rem 1.35rem;
-  box-shadow: 0 18px 32px rgba(31, 25, 26, 0.16);
+  background-color: var(--masthead-bg);
+  color: var(--masthead-fg);
+  border-bottom: 3px solid var(--masthead-accent);
+  padding: 0.85rem 1rem 1.25rem;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
 }
 
-.site-nav.is-open {
+.masthead-nav.is-open {
   display: block;
 }
 
-.site-nav__list {
+.masthead-nav__list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
 }
 
-.site-nav__link {
-  display: block;
-  padding: 0.72rem 0.65rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--ink-espresso);
-  border-bottom: 1px solid var(--rule-light);
-}
-
-.site-nav__link[aria-current="page"] {
-  color: var(--merlot);
-  background-color: var(--bg-linen);
-}
-
-.site-nav__cta {
-  margin-top: 0.75rem;
-  display: inline-flex;
-  justify-content: center;
+.masthead-nav__link {
+  display: flex;
   align-items: center;
-  width: 100%;
-  min-height: 46px;
-  padding: 0.7rem 1.15rem;
-  background-color: var(--merlot);
-  color: #FFFFFF;
-  text-decoration: none;
-  font-size: 0.85rem;
+  gap: 0.5rem;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.88rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border-radius: var(--radius-sharp);
+  text-decoration: none;
+  color: var(--masthead-fg);
+  border-bottom: 1px solid var(--masthead-rule);
 }
 
-.site-nav__cta:hover {
-  background-color: var(--merlot-deep);
-  color: #FFFFFF;
+.masthead-nav__num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--masthead-accent);
 }
 
-@media (min-width: 860px) {
+.masthead-nav__link[aria-current="page"] {
+  color: var(--masthead-accent);
+  font-weight: 700;
+}
+
+@media (min-width: 980px) {
   .nav-toggle {
     display: none;
   }
-  .site-nav {
+  .masthead-nav {
     display: flex !important;
     position: static;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
     background: transparent;
     border: 0;
     padding: 0;
     box-shadow: none;
-    align-items: center;
-    gap: 1.75rem;
   }
-  .site-nav__list {
+  .masthead-brand {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .masthead-nav__list {
     flex-direction: row;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
-  .site-nav__link {
-    padding: 0.4rem 0;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
+  .masthead-nav__link {
+    padding: 0.35rem 0;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
     border-bottom: 2px solid transparent;
   }
-  .site-nav__link:hover {
-    color: var(--merlot);
-    border-bottom-color: var(--rule-strong);
+  .masthead-nav__link:hover {
+    color: var(--masthead-accent);
+    border-bottom-color: var(--masthead-rule);
   }
-  .site-nav__link[aria-current="page"] {
-    background: transparent;
-    color: var(--merlot);
-    border-bottom-color: var(--merlot);
+  .masthead-nav__link[aria-current="page"] {
+    border-bottom-color: var(--masthead-accent);
   }
-  .site-nav__cta {
-    margin-top: 0;
+}
+
+/* Interactive Mood Switcher Pill (Right Wing on Desktop, Full Slim Strip on Mobile) */
+.masthead-mood-wrap {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--masthead-rule);
+  padding: 0.45rem 0 0.1rem;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 980px) {
+  .masthead-mood-wrap {
+    border-top: 0;
+    padding: 0;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+  }
+}
+
+.mood-switcher {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 380px;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid var(--masthead-rule);
+  background-color: rgba(128, 105, 85, 0.12);
+}
+
+@media (min-width: 980px) {
+  .mood-switcher {
     width: auto;
-    min-height: 42px;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.8rem;
+    max-width: none;
   }
+}
+
+.mood-switcher__btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--masthead-fg);
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.48rem 0.75rem;
+  min-height: 38px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  transition: background-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+}
+
+@media (min-width: 980px) {
+  .mood-switcher__btn {
+    font-size: 0.75rem;
+    padding: 0.48rem 0.9rem;
+  }
+}
+
+.mood-switcher__btn[data-mood-btn="day"][aria-pressed="true"] {
+  background-color: var(--claret-mid);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(28, 22, 23, 0.2);
+}
+
+.mood-switcher__btn[data-mood-btn="night"][aria-pressed="true"] {
+  background-color: var(--gold-bright);
+  color: #1C1617;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
 /* ==========================================================================
-   3. Buttons & Editorial Typography
+   3. Triple-Crown "This Is Yarm" Ribbon & Broadsheet Crown Title
    ========================================================================== */
-.eyebrow {
+.triple-crown-ribbon {
+  background-color: var(--claret-deep);
+  color: var(--travertine);
+  border-bottom: 1px solid var(--gold-bright);
+  padding: 0.55rem 0.85rem;
+  text-align: center;
+}
+
+.triple-crown-ribbon__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .triple-crown-ribbon__inner {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+  }
+}
+
+.triple-crown-ribbon__badge {
+  color: var(--gold-bright);
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  font-size: 0.76rem;
+  gap: 0.3rem;
+}
+
+.triple-crown-ribbon__source {
+  color: #EDE2D5;
+  font-weight: 600;
+}
+
+/* Compact Broadsheet Title Strip above the 50/50 Dual Arch Stage */
+.broadsheet-crown {
+  background-color: var(--subhero-bg);
+  color: var(--subhero-fg);
+  border-bottom: 1px solid var(--masthead-rule);
+  padding: 1.25rem 0 1.15rem;
+  text-align: center;
+  transition: background-color 0.28s ease, color 0.28s ease;
+}
+
+.broadsheet-crown h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.3vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 auto 0.35rem;
+  max-width: 32ch;
+}
+
+.broadsheet-crown p {
+  margin: 0 auto;
+  max-width: 64ch;
+  font-size: 0.94rem;
+  color: var(--subhero-muted);
+}
+
+/* Mobile Quick-Jump Tabs for the Dual Diptych */
+.diptych-mobile-jumps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 900px) {
+  .diptych-mobile-jumps {
+    display: none;
+  }
+}
+
+.diptych-jump-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.diptych-jump-link--day {
+  background-color: var(--travertine);
+  color: var(--espresso);
+  border: 1px solid var(--rule-architectural);
+}
+
+.diptych-jump-link--night {
+  background-color: var(--claret);
+  color: var(--gold-pale);
+  border: 1px solid var(--gold-bright);
+}
+
+/* ==========================================================================
+   4. Hero Spatial Composition — 50/50 Dual Station-Arch Split Diptych
+   ========================================================================== */
+.diptych-stage {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 3px double var(--rule-architectural);
+}
+
+@media (min-width: 900px) {
+  .diptych-stage {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.diptych-world {
+  position: relative;
+  padding: 2rem 1.1rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .diptych-world {
+    padding: 2.6rem 2.4rem 3rem;
+  }
+}
+
+@media (min-width: 1180px) {
+  .diptych-world {
+    padding: 3rem 3.5rem 3.5rem;
+  }
+}
+
+/* LEFT WORLD — MATTINA & PRANZO */
+.diptych-world--mattina {
+  background-color: var(--travertine);
+  color: var(--espresso);
+  border-bottom: 2px solid var(--rule-architectural);
+}
+
+@media (min-width: 900px) {
+  .diptych-world--mattina {
+    border-bottom: 0;
+    border-right: 2px solid var(--rule-architectural);
+  }
+}
+
+/* RIGHT WORLD — SERA & ENOTECA */
+.diptych-world--sera {
+  background-color: var(--claret);
+  color: var(--travertine);
+}
+
+/* Subtle Spotlight Accent Driven by Mood Switcher (both remain 100% readable) */
+html[data-mood="day"] .diptych-world--mattina {
+  box-shadow: inset 0 5px 0 0 var(--claret-mid);
+}
+
+html[data-mood="night"] .diptych-world--sera {
+  box-shadow: inset 0 5px 0 0 var(--gold-bright);
+}
+
+.diptych-world__inner {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Roman Numeral & Seal Top Bar */
+.diptych-world__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.35rem;
+  border-bottom: 1px solid var(--rule-hairline);
+}
+
+.diptych-world--sera .diptych-world__meta {
+  border-bottom-color: var(--rule-claret);
+}
+
+.diptych-roman {
+  font-family: var(--font-display);
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--merlot);
-  margin: 0 0 0.8rem;
+  color: var(--claret-mid);
 }
 
-.eyebrow::before {
-  content: "";
-  display: inline-block;
-  width: 1.6rem;
-  height: 1px;
-  background-color: currentColor;
+.diptych-world--sera .diptych-roman {
+  color: var(--gold-bright);
 }
 
-.dark-surface .eyebrow,
-.merlot-surface .eyebrow {
-  color: var(--gold-soft-dark);
+.diptych-seal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  background-color: var(--travertine-warm);
+  color: var(--espresso);
+  border: 1px solid var(--rule-architectural);
 }
 
+.diptych-world--sera .diptych-seal {
+  background-color: var(--claret-deep);
+  color: var(--gold-pale);
+  border-color: var(--gold-bright);
+}
+
+/* Tall Classical Arched Railway Window Photo Frame */
+.arch-window {
+  margin: 0 auto 1.5rem;
+  width: 100%;
+  max-width: 470px;
+  padding: 0.6rem 0.6rem 0.55rem;
+  border-radius: 200px 200px 8px 8px;
+  background-color: var(--carta-paper);
+  border: 1px solid var(--rule-architectural);
+  box-shadow: var(--shadow-carta);
+}
+
+.diptych-world--sera .arch-window {
+  background-color: var(--claret-deep);
+  border-color: var(--gold-bright);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.36);
+}
+
+.arch-window__pane {
+  overflow: hidden;
+  border-radius: 192px 192px 4px 4px;
+  border: 1px solid var(--rule-hairline);
+  aspect-ratio: 5 / 4;
+  background-color: #2B2022;
+}
+
+.diptych-world--sera .arch-window__pane {
+  border-color: rgba(228, 189, 112, 0.45);
+}
+
+.arch-window__pane img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.arch-window:hover .arch-window__pane img {
+  transform: scale(1.025);
+}
+
+.arch-window figcaption {
+  margin-top: 0.55rem;
+  padding: 0 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--espresso-soft);
+}
+
+.diptych-world--sera .arch-window figcaption {
+  color: #E7DBD0;
+}
+
+/* Diptych Typography & Story */
+.diptych-world__kicker {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 0.35rem;
+}
+
+.diptych-world--sera .diptych-world__kicker {
+  color: var(--gold-bright);
+}
+
+.diptych-world h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.8vw, 2.45rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+}
+
+.diptych-world__story {
+  font-size: 0.98rem;
+  color: var(--espresso-soft);
+  margin: 0 0 1rem;
+}
+
+.diptych-world--sera .diptych-world__story {
+  color: #EDE2D6;
+}
+
+.diptych-world__hours {
+  font-size: 0.86rem;
+  padding: 0.65rem 0.8rem;
+  background-color: var(--carta-paper);
+  border-left: 3px solid var(--claret-mid);
+  margin-bottom: 1.35rem;
+}
+
+.diptych-world--sera .diptych-world__hours {
+  background-color: var(--claret-card);
+  border-left-color: var(--gold-bright);
+  color: var(--travertine);
+}
+
+.diptych-world__actions {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+/* ==========================================================================
+   5. Buttons & Shared Typography
+   ========================================================================== */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.12;
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.8rem;
   color: inherit;
 }
 
-h1 {
-  font-size: clamp(2.2rem, 5.2vw, 3.85rem);
-  letter-spacing: -0.01em;
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--claret-mid);
+  margin: 0 0 0.65rem;
 }
 
-h2 {
-  font-size: clamp(1.85rem, 3.8vw, 2.85rem);
-}
-
-h3 {
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+.eyebrow::before {
+  content: "";
+  width: 1.5rem;
+  height: 1px;
+  background-color: currentColor;
 }
 
 .btn-group {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 1.5rem;
+  margin-top: 1.35rem;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  min-height: 48px;
-  padding: 0.78rem 1.4rem;
+  gap: 0.45rem;
+  min-height: 46px;
+  padding: 0.72rem 1.25rem;
   font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.07em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: var(--radius-sharp);
+  border-radius: 2px;
   border: 1px solid transparent;
   cursor: pointer;
   text-align: center;
 }
 
 .btn--primary {
-  background-color: var(--merlot);
+  background-color: var(--claret-mid);
   color: #FFFFFF;
-  border-color: var(--merlot);
+  border-color: var(--claret-mid);
 }
 
 .btn--primary:hover {
-  background-color: var(--merlot-deep);
-  border-color: var(--merlot-deep);
+  background-color: var(--claret-deep);
+  border-color: var(--claret-deep);
   color: #FFFFFF;
 }
 
 .btn--outline {
   background-color: transparent;
-  color: var(--ink-espresso);
-  border-color: var(--ink-espresso);
+  color: var(--espresso);
+  border-color: var(--espresso);
 }
 
 .btn--outline:hover {
-  background-color: var(--ink-espresso);
-  color: var(--bg-parchment);
+  background-color: var(--espresso);
+  color: var(--travertine);
 }
 
 .btn--gold {
-  background-color: var(--gold-on-dark);
-  color: var(--ink-espresso);
-  border-color: var(--gold-on-dark);
+  background-color: var(--gold-bright);
+  color: #1C1617;
+  border-color: var(--gold-bright);
 }
 
 .btn--gold:hover {
-  background-color: var(--gold-soft-dark);
-  border-color: var(--gold-soft-dark);
-  color: var(--ink-espresso);
+  background-color: var(--gold-pale);
+  border-color: var(--gold-pale);
+  color: #1C1617;
 }
 
 .btn--ghost-light {
   background-color: transparent;
-  color: var(--bg-parchment);
-  border-color: var(--gold-on-dark);
+  color: var(--travertine);
+  border-color: var(--gold-bright);
 }
 
 .btn--ghost-light:hover {
-  background-color: var(--gold-on-dark);
-  color: var(--ink-espresso);
+  background-color: var(--gold-bright);
+  color: #1C1617;
 }
 
 /* ==========================================================================
-   4. Hero — Day-to-Night Station Bistro Split
+   6. Station Departure-Style Split-Flap Ledger Strip
    ========================================================================== */
-.hero {
-  padding: 2.25rem 0 3rem;
-  border-bottom: 1px solid var(--rule-light);
-  background: linear-gradient(180deg, var(--bg-parchment) 0%, var(--bg-linen) 100%);
+.departure-strip {
+  background-color: #171213;
+  color: var(--travertine);
+  border-bottom: 2px solid var(--gold-bright);
+  padding: 1.35rem 0;
 }
 
-@media (min-width: 960px) {
-  .hero {
-    padding: 3.5rem 0 4.25rem;
-  }
-}
-
-.hero__grid {
+.departure-board {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  align-items: center;
+  gap: 0.75rem;
 }
 
-@media (min-width: 960px) {
-  .hero__grid {
-    grid-template-columns: 1.08fr 0.92fr;
-    gap: 3.25rem;
-  }
-}
-
-.day-night-pill {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.38rem 0.75rem;
-  background-color: var(--bg-card);
-  border: 1px solid var(--rule-strong);
-  border-radius: var(--radius-sharp);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 1.1rem;
-}
-
-.day-night-pill__day {
-  color: var(--sage);
-}
-
-.day-night-pill__sep {
-  color: var(--ink-muted);
-}
-
-.day-night-pill__night {
-  color: var(--merlot);
-}
-
-.hero__lead {
-  font-size: 1.0625rem;
-  color: var(--ink-muted);
-  max-width: 54ch;
-  margin: 0 0 1.25rem;
-}
-
-.hero__meta {
-  margin-top: 1.65rem;
-  padding-top: 1.15rem;
-  border-top: 1px solid var(--rule-strong);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.6rem;
-  font-size: 0.9rem;
-}
-
-@media (min-width: 560px) {
-  .hero__meta {
+@media (min-width: 680px) {
+  .departure-board {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-.hero__meta strong {
-  display: block;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--merlot);
-}
-
-.editorial-figure {
-  margin: 0;
-  background-color: var(--bg-card);
-  border: 1px solid var(--rule-strong);
-  padding: 0.65rem;
-  box-shadow: var(--shadow-editorial);
-}
-
-.editorial-figure img {
-  width: 100%;
-  aspect-ratio: 1440 / 803;
-  object-fit: cover;
-  background-color: #E3D9CB;
-}
-
-.editorial-figure--feature img {
-  aspect-ratio: 1200 / 896;
-}
-
-.editorial-figure figcaption {
-  margin-top: 0.55rem;
-  font-size: 0.78rem;
-  color: var(--ink-muted);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.dark-surface .editorial-figure {
-  background-color: #2A2123;
-  border-color: var(--gold-on-dark);
-}
-
-.dark-surface .editorial-figure figcaption {
-  color: #E4DAD0;
-}
-
-/* ==========================================================================
-   5. Verified "This Is Yarm" Acclaim Plaque Strip
-   ========================================================================== */
-.acclaim-band {
-  background-color: var(--merlot);
-  color: var(--bg-parchment);
-  padding: 2.35rem 0;
-  border-bottom: 2px solid var(--gold-on-dark);
-}
-
-.acclaim-band__header {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.acclaim-band__kicker {
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold-soft-dark);
-  margin: 0 0 0.35rem;
-}
-
-.acclaim-band__title {
-  font-size: clamp(1.45rem, 2.8vw, 2rem);
-  margin: 0;
-  color: #FFFFFF;
-}
-
-.acclaim-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-@media (min-width: 720px) {
-  .acclaim-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+@media (min-width: 1120px) {
+  .departure-board {
+    grid-template-columns: 1.05fr 1.1fr 0.75fr 1.1fr;
+    gap: 0;
+    border: 1px solid #443437;
   }
 }
 
-.acclaim-plaque {
-  background-color: var(--merlot-deep);
-  border: 1px solid var(--gold-on-dark);
-  padding: 1.35rem 1.25rem;
-  text-align: center;
+.departure-cell {
+  background-color: #21191B;
+  border: 1px solid #3D2E31;
+  padding: 0.85rem 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 0.22rem;
 }
 
-.acclaim-plaque__rank {
-  font-family: var(--font-display);
-  font-size: 2.65rem;
+@media (min-width: 1120px) {
+  .departure-cell {
+    border: 0;
+    border-right: 1px solid #3D2E31;
+  }
+  .departure-cell:last-child {
+    border-right: 0;
+  }
+}
+
+.departure-cell__label {
+  font-size: 0.68rem;
   font-weight: 700;
-  line-height: 1;
-  color: var(--gold-soft-dark);
-  margin-bottom: 0.3rem;
-}
-
-.acclaim-plaque__cat {
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  font-weight: 600;
-  color: #FFFFFF;
-  margin-bottom: 0.25rem;
-}
-
-.acclaim-plaque__src {
-  font-size: 0.76rem;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #EFE4D8;
+  color: var(--gold-bright);
+}
+
+.departure-cell__val {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #FAF5EC;
+}
+
+.departure-cell__val a {
+  color: var(--gold-pale);
+  text-decoration: none;
+}
+
+.departure-cell__val a:hover {
+  text-decoration: underline;
 }
 
 /* ==========================================================================
-   6. Day Chapter & Night Chapter Sections
+   7. Folded Printed Italian "La Carta" 3-Column Preview
    ========================================================================== */
 .section {
   padding: 3.25rem 0;
@@ -807,82 +1156,156 @@ h3 {
 
 @media (min-width: 960px) {
   .section {
-    padding: 4.75rem 0;
+    padding: 4.5rem 0;
   }
 }
 
 .section--linen {
-  background-color: var(--bg-linen);
-  border-top: 1px solid var(--rule-light);
-  border-bottom: 1px solid var(--rule-light);
+  background-color: var(--travertine-warm);
+  border-top: 1px solid var(--rule-hairline);
+  border-bottom: 1px solid var(--rule-hairline);
 }
 
-.dark-surface {
-  background-color: var(--ink-espresso);
-  color: var(--bg-parchment);
+.section-header-center {
+  text-align: center;
+  max-width: 64ch;
+  margin: 0 auto 2.25rem;
 }
 
-.split-chapter {
+.section-header-center h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.85rem);
+  margin-bottom: 0.5rem;
+}
+
+.section-header-center p {
+  margin: 0;
+  color: var(--espresso-soft);
+}
+
+/* Tri-fold Printed Paper Carta */
+.folded-carta {
+  background-color: var(--carta-paper);
+  border: 1px solid var(--rule-architectural);
+  outline: 4px solid var(--travertine-warm);
+  box-shadow: var(--shadow-carta);
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.25rem;
-  align-items: center;
 }
 
 @media (min-width: 960px) {
-  .split-chapter {
-    grid-template-columns: 1fr 1fr;
-    gap: 3.5rem;
+  .folded-carta {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.chapter-cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.15rem;
-  margin-top: 1.5rem;
+.carta-leaf {
+  padding: 1.75rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--rule-hairline);
+  position: relative;
 }
 
-@media (min-width: 640px) {
-  .chapter-cards--two {
-    grid-template-columns: 1fr 1fr;
+@media (min-width: 768px) {
+  .carta-leaf {
+    padding: 2.25rem 2rem;
   }
 }
 
-.editorial-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--rule-light);
-  border-top: 3px solid var(--sage);
-  padding: 1.35rem;
+@media (min-width: 960px) {
+  .carta-leaf {
+    border-bottom: 0;
+    border-right: 1px dashed var(--rule-architectural);
+    background-image: linear-gradient(90deg, rgba(28, 22, 23, 0.025) 0%, rgba(255, 255, 255, 0) 14%);
+  }
+  .carta-leaf:last-child {
+    border-right: 0;
+  }
 }
 
-.editorial-card--merlot {
-  border-top-color: var(--merlot);
+.carta-leaf--enoteca {
+  background-color: #FBF4F5;
 }
 
-.dark-surface .editorial-card {
-  background-color: #292123;
-  border-color: var(--rule-dark);
-  border-top: 3px solid var(--gold-on-dark);
-  color: var(--bg-parchment);
+.carta-leaf__arch-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.85rem;
+  border-radius: 999px 999px 3px 3px;
+  border: 1px solid var(--claret-mid);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--claret-mid);
+  margin-bottom: 0.9rem;
 }
 
-.editorial-card h3 {
+.carta-leaf__poll {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0 0 0.3rem;
+}
+
+.carta-leaf h3 {
+  font-size: 1.6rem;
   margin-bottom: 0.45rem;
+  color: var(--espresso);
 }
 
-.editorial-card p {
-  margin: 0;
-  font-size: 0.94rem;
-  color: var(--ink-muted);
+.carta-leaf__intro {
+  font-size: 0.9rem;
+  color: var(--espresso-soft);
+  margin: 0 0 1.15rem;
+  padding-bottom: 0.95rem;
+  border-bottom: 1px solid var(--rule-hairline);
 }
 
-.dark-surface .editorial-card p {
-  color: #E3D8CE;
+.carta-mini-list {
+  list-style: none;
+  margin: 0 0 1.4rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.carta-mini-list li {
+  font-size: 0.88rem;
+  color: var(--espresso-soft);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dotted var(--rule-hairline);
+}
+
+.carta-mini-list li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.carta-leaf__link {
+  margin-top: auto;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--claret-mid);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.carta-leaf__link:hover {
+  color: var(--espresso);
+  text-decoration: underline;
 }
 
 /* ==========================================================================
-   7. Station Ledger (Hours, Location & Delivery)
+   8. Station Concierge & Directions Ledger (#visit)
    ========================================================================== */
 .ledger-grid {
   display: grid;
@@ -892,15 +1315,17 @@ h3 {
 
 @media (min-width: 900px) {
   .ledger-grid {
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.08fr 0.92fr;
     gap: 2.25rem;
   }
 }
 
 .ledger-box {
-  background-color: var(--bg-card);
-  border: 1px solid var(--rule-strong);
-  padding: 1.6rem;
+  background-color: var(--carta-paper);
+  border: 1px solid var(--rule-architectural);
+  border-top: 4px solid var(--claret-mid);
+  padding: 1.5rem 1.25rem;
+  box-shadow: var(--shadow-carta);
 }
 
 @media (min-width: 768px) {
@@ -910,7 +1335,7 @@ h3 {
 }
 
 .ledger-list {
-  margin: 1.2rem 0 0;
+  margin: 1.1rem 0 0;
   padding: 0;
   list-style: none;
 }
@@ -919,8 +1344,8 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid var(--rule-light);
+  padding: 0.82rem 0;
+  border-bottom: 1px solid var(--rule-hairline);
 }
 
 @media (min-width: 560px) {
@@ -937,56 +1362,71 @@ h3 {
 }
 
 .ledger-label {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--ink-espresso);
+  color: var(--espresso);
   flex-shrink: 0;
 }
 
 .ledger-val {
-  color: var(--ink-muted);
-  font-size: 0.95rem;
+  color: var(--espresso-soft);
+  font-size: 0.94rem;
 }
 
 /* ==========================================================================
-   8. Page Masthead (Subpages: Menus & Bookings)
+   9. Subpages (Menus & Bookings): Arched Masthead Deck, Tabs & Carta Sheets
    ========================================================================== */
-.page-hero {
-  background-color: var(--bg-linen);
-  border-bottom: 1px solid var(--rule-strong);
-  padding: 2.35rem 0 2.6rem;
+.page-masthead-deck {
+  background-color: var(--subhero-bg);
+  color: var(--subhero-fg);
+  border-bottom: 2px solid var(--masthead-rule);
+  padding: 2.2rem 0 2.4rem;
+  text-align: center;
+  transition: background-color 0.28s ease, color 0.28s ease;
 }
 
-@media (min-width: 860px) {
-  .page-hero {
-    padding: 3.25rem 0 3.5rem;
-  }
+.page-masthead-deck__kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--subhero-kicker);
+  margin: 0 0 0.5rem;
 }
 
-.page-hero p {
+.page-masthead-deck h1 {
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  margin: 0 auto 0.65rem;
+  max-width: 26ch;
+}
+
+.page-masthead-deck p {
   max-width: 62ch;
-  color: var(--ink-muted);
-  font-size: 1.04rem;
-  margin: 0;
+  margin: 0 auto;
+  color: var(--subhero-muted);
+  font-size: 1rem;
 }
 
-/* ==========================================================================
-   9. Accessible Interactive Tabs (Menus & Dual Booking Forms)
-   ========================================================================== */
+.page-masthead-deck a {
+  color: inherit;
+}
+
+/* Accessible ARIA Tabs Styled as Arched Station Index Cards */
 .tabs-bar {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  border-bottom: 2px solid var(--rule-strong);
+  border-bottom: 2px solid var(--rule-architectural);
   padding-bottom: 0.85rem;
   margin-bottom: 2rem;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 760px) {
   .tabs-bar {
     flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 0.65rem;
     padding-bottom: 0;
@@ -995,66 +1435,68 @@ h3 {
 
 .tab-btn {
   appearance: none;
-  background-color: var(--bg-card);
-  color: var(--ink-espresso);
-  border: 1px solid var(--rule-strong);
-  padding: 0.8rem 1.2rem;
+  background-color: var(--carta-paper);
+  color: var(--espresso);
+  border: 1px solid var(--rule-architectural);
+  padding: 0.82rem 1.25rem;
   font-family: var(--font-body);
-  font-size: 0.86rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   text-align: left;
   cursor: pointer;
   min-height: 48px;
-  border-radius: var(--radius-sharp);
+  border-radius: 2px;
   transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 760px) {
   .tab-btn {
     border-bottom: 0;
-    border-radius: var(--radius-sharp) var(--radius-sharp) 0 0;
+    border-radius: 16px 16px 0 0;
     text-align: center;
+    padding: 0.85rem 1.5rem;
   }
 }
 
 .tab-btn:hover {
-  background-color: var(--bg-linen);
+  background-color: var(--travertine-warm);
 }
 
 .tab-btn[aria-selected="true"] {
-  background-color: var(--merlot);
+  background-color: var(--claret-mid);
   color: #FFFFFF;
-  border-color: var(--merlot);
+  border-color: var(--claret-mid);
 }
 
 .tab-panel[hidden] {
   display: none;
 }
 
-/* Menu Ledger Rows */
+/* Full Printed Carta Menu Sheet */
 .menu-sheet {
-  background-color: var(--bg-card);
-  border: 1px solid var(--rule-strong);
-  padding: 1.5rem 1.2rem;
-  box-shadow: var(--shadow-editorial);
+  background-color: var(--carta-paper);
+  border: 1px solid var(--rule-architectural);
+  outline: 4px solid var(--travertine-warm);
+  padding: 1.5rem 1.15rem;
+  box-shadow: var(--shadow-carta);
 }
 
 @media (min-width: 768px) {
   .menu-sheet {
-    padding: 2.5rem;
+    padding: 2.6rem 2.75rem;
   }
 }
 
 .menu-sheet--evening {
-  border-top: 4px solid var(--merlot);
+  border-top: 5px solid var(--claret-mid);
 }
 
 .menu-sheet__header {
-  border-bottom: 1px solid var(--rule-strong);
+  border-bottom: 3px double var(--rule-architectural);
   padding-bottom: 1.15rem;
-  margin-bottom: 1.65rem;
+  margin-bottom: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -1077,9 +1519,9 @@ h3 {
 }
 
 .menu-section-group h3 {
-  font-size: 1.45rem;
-  color: var(--merlot);
-  border-bottom: 1px solid var(--rule-light);
+  font-size: 1.5rem;
+  color: var(--claret-mid);
+  border-bottom: 1px solid var(--rule-hairline);
   padding-bottom: 0.45rem;
   margin-bottom: 1rem;
 }
@@ -1095,7 +1537,7 @@ h3 {
   flex-direction: column;
   gap: 0.35rem;
   padding: 0.85rem 0;
-  border-bottom: 1px dashed var(--rule-light);
+  border-bottom: 1px dashed var(--rule-hairline);
 }
 
 @media (min-width: 600px) {
@@ -1119,28 +1561,28 @@ h3 {
   display: block;
   margin-top: 0.28rem;
   font-size: 0.88rem;
-  color: var(--ink-muted);
+  color: var(--espresso-soft);
 }
 
 .menu-row__price {
   flex-shrink: 0;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .owner-zero-homework {
-  margin-top: 2rem;
-  background-color: var(--sage-tint);
-  border: 1px solid var(--sage);
-  border-left: 4px solid var(--sage);
+  margin-top: 2.25rem;
+  background-color: var(--sage-wash);
+  border: 1px solid var(--sage-station);
+  border-left: 4px solid var(--sage-station);
   padding: 1.25rem 1.35rem;
-  color: var(--ink-espresso);
+  color: var(--espresso);
 }
 
 .owner-zero-homework strong {
   display: block;
-  color: var(--sage);
-  font-size: 0.82rem;
-  letter-spacing: 0.09em;
+  color: var(--sage-station);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 0.25rem;
 }
@@ -1151,18 +1593,20 @@ h3 {
 }
 
 /* ==========================================================================
-   10. Accessible Dummy Forms & Prominent Validation / Status Panels
+   10. Accessible Dummy Forms & Exact Status Confirmation
    ========================================================================== */
 .form-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--rule-strong);
-  padding: 1.5rem 1.2rem;
-  box-shadow: var(--shadow-editorial);
+  background-color: var(--carta-paper);
+  border: 1px solid var(--rule-architectural);
+  border-top: 4px solid var(--claret-mid);
+  outline: 4px solid var(--travertine-warm);
+  padding: 1.5rem 1.15rem;
+  box-shadow: var(--shadow-carta);
 }
 
 @media (min-width: 768px) {
   .form-card {
-    padding: 2.35rem;
+    padding: 2.5rem;
   }
 }
 
@@ -1189,19 +1633,14 @@ h3 {
 }
 
 .form-field label {
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--ink-espresso);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--espresso);
 }
 
 .req-star {
-  color: var(--merlot);
+  color: var(--claret-mid);
   font-weight: 700;
-}
-
-.form-hint {
-  font-size: 0.8rem;
-  color: var(--ink-muted);
 }
 
 .form-control {
@@ -1210,10 +1649,10 @@ h3 {
   padding: 0.7rem 0.85rem;
   font-family: var(--font-body);
   font-size: 1rem;
-  color: var(--ink-espresso);
+  color: var(--espresso);
   background-color: #FFFFFF;
-  border: 1px solid var(--rule-strong);
-  border-radius: var(--radius-sharp);
+  border: 1px solid var(--rule-architectural);
+  border-radius: 2px;
 }
 
 textarea.form-control {
@@ -1240,10 +1679,10 @@ textarea.form-control {
 .demo-status-panel {
   margin-top: 1.5rem;
   padding: 1.25rem 1.35rem;
-  background-color: var(--merlot);
+  background-color: var(--claret-mid);
   color: #FFFFFF;
-  border-left: 5px solid var(--gold-on-dark);
-  border-radius: var(--radius-sharp);
+  border-left: 5px solid var(--gold-bright);
+  border-radius: 2px;
 }
 
 .demo-status-panel[hidden] {
@@ -1267,14 +1706,14 @@ textarea.form-control {
    11. Footer & Solid Opaque Sticky Mobile Action Bar
    ========================================================================== */
 .site-footer {
-  background-color: var(--ink-espresso);
-  color: var(--bg-parchment);
-  border-top: 3px solid var(--gold-on-dark);
+  background-color: #171213;
+  color: var(--travertine);
+  border-top: 3px solid var(--gold-bright);
   padding: 3rem 0 2.5rem;
 }
 
 .site-footer a {
-  color: var(--gold-soft-dark);
+  color: var(--gold-bright);
 }
 
 .site-footer a:hover {
@@ -1286,7 +1725,7 @@ textarea.form-control {
   grid-template-columns: 1fr;
   gap: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--rule-dark);
+  border-bottom: 1px solid #3A2C2F;
 }
 
 @media (min-width: 860px) {
@@ -1298,11 +1737,11 @@ textarea.form-control {
 
 .footer-heading {
   font-family: var(--font-body);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--gold-soft-dark);
+  color: var(--gold-bright);
   margin: 0 0 0.85rem;
 }
 
@@ -1329,27 +1768,27 @@ textarea.form-control {
 }
 
 .footer-credit {
-  font-weight: 600;
-  color: var(--bg-parchment);
+  font-weight: 700;
+  color: var(--travertine);
 }
 
-/* Solid Opaque Mobile Action Bar (NEVER semi-transparent) */
+/* Solid Opaque Mobile Action Bar (NEVER translucent) */
 .mobile-action-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 950;
-  background-color: #1F191A;
-  border-top: 2px solid #C9963B;
+  background-color: #171213;
+  border-top: 2px solid var(--gold-bright);
   display: grid;
   grid-template-columns: 1fr 1fr 1.25fr;
-  gap: 0.45rem;
-  padding: 0.5rem 0.65rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
-  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.28);
+  gap: 0.42rem;
+  padding: 0.5rem 0.6rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.32);
 }
 
-@media (min-width: 860px) {
+@media (min-width: 980px) {
   .mobile-action-bar {
     display: none;
   }
@@ -1360,31 +1799,31 @@ textarea.form-control {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 0.45rem 0.5rem;
-  font-size: 0.78rem;
+  padding: 0.45rem 0.45rem;
+  font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: var(--radius-sharp);
-  background-color: #2E2527;
-  color: #FAF6F0;
-  border: 1px solid #4E3E41;
+  border-radius: 2px;
+  background-color: #2A2022;
+  color: #FAF5EC;
+  border: 1px solid #4A393D;
   text-align: center;
 }
 
 .mobile-action-bar__btn:hover {
-  background-color: #3D3134;
+  background-color: #3A2C2F;
   color: #FFFFFF;
 }
 
 .mobile-action-bar__btn--primary {
-  background-color: var(--merlot);
+  background-color: var(--claret-mid);
   color: #FFFFFF;
-  border-color: var(--gold-on-dark);
+  border-color: var(--gold-bright);
 }
 
 .mobile-action-bar__btn--primary:hover {
-  background-color: var(--merlot-deep);
+  background-color: var(--claret-deep);
   color: #FFFFFF;
 }

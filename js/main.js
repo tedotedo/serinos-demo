@@ -1,10 +1,63 @@
 /* ==========================================================================
-   Serino's Deli & Wine Bar — Interactive UI & Accessible Demo Forms
-   Zero external network calls.
+   Serino's Deli & Wine Bar — Interactive Mood Switcher, Tabs & Demo Forms
+   Zero external network calls · Persisted Day/Night Milanese Masthead Mood
    ========================================================================== */
 
 (function () {
   'use strict';
+
+  var MOOD_KEY = 'serinos_mood';
+  var moodButtons = Array.prototype.slice.call(
+    document.querySelectorAll('[data-mood-btn]')
+  );
+
+  function safeGetMood() {
+    try {
+      var stored = window.localStorage.getItem(MOOD_KEY);
+      if (stored === 'day' || stored === 'night') return stored;
+    } catch (err) {
+      /* localStorage unavailable in strict privacy context */
+    }
+    return document.documentElement.getAttribute('data-mood') === 'night' ? 'night' : 'day';
+  }
+
+  function applyMood(mood, fromUserClick) {
+    var cleanMood = mood === 'night' ? 'night' : 'day';
+    document.documentElement.setAttribute('data-mood', cleanMood);
+
+    try {
+      window.localStorage.setItem(MOOD_KEY, cleanMood);
+    } catch (err) {
+      /* ignore */
+    }
+
+    moodButtons.forEach(function (btn) {
+      var target = btn.getAttribute('data-mood-btn');
+      btn.setAttribute('aria-pressed', String(target === cleanMood));
+    });
+
+    /* Helpful contextual sync on explicit click */
+    if (fromUserClick) {
+      var menuTab = document.getElementById(cleanMood === 'night' ? 'tab-evening' : 'tab-brunch');
+      if (menuTab) {
+        menuTab.click();
+      }
+
+      var slotSelect = document.getElementById('res-slot');
+      if (slotSelect && !slotSelect.value) {
+        slotSelect.value = cleanMood === 'night' ? 'evening-late' : 'morning-brunch';
+      }
+    }
+  }
+
+  applyMood(safeGetMood(), false);
+
+  moodButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var chosen = btn.getAttribute('data-mood-btn');
+      applyMood(chosen, true);
+    });
+  });
 
   /* 1. Keyboard-Accessible Mobile Navigation */
   var navToggle = document.querySelector('[data-nav-toggle]');
@@ -40,6 +93,12 @@
       ) {
         closeNav(false);
       }
+    });
+
+    siteNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        closeNav(false);
+      });
     });
   }
 
@@ -109,7 +168,24 @@
     window.addEventListener('hashchange', checkHash);
   });
 
-  /* 3. Set sensible minimum date on date inputs */
+  /* 3. Pre-select sitting on bookings.html if passed via query string */
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var sittingParam = params.get('sitting');
+    var resSlot = document.getElementById('res-slot');
+    if (sittingParam && resSlot) {
+      for (var i = 0; i < resSlot.options.length; i++) {
+        if (resSlot.options[i].value === sittingParam) {
+          resSlot.value = sittingParam;
+          break;
+        }
+      }
+    }
+  } catch (err) {
+    /* ignore */
+  }
+
+  /* 4. Set sensible minimum date on date inputs */
   var todayIso = new Date().toISOString().split('T')[0];
   document.querySelectorAll('input[type="date"]').forEach(function (input) {
     if (!input.getAttribute('min')) {
@@ -117,7 +193,7 @@
     }
   });
 
-  /* 4. Client-Side Dummy Form Validation & Exact Demo Status Message */
+  /* 5. Client-Side Dummy Form Validation & Exact Demo Status Message */
   var demoForms = document.querySelectorAll('[data-demo-form]');
 
   function validateField(field) {

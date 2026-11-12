@@ -2,15 +2,15 @@
 
 Unsolicited static concept website created by **Mark Aszkenasy** for **Serino's Deli & Wine Bar** (`5 Station Road, Eaglescliffe, Stockton-on-Tees TS16 0BU`).
 
-## Structure
+## Design Archetype: Interactive Day-to-Night Dual Railway Arch Diptych & Milanese Masthead
 
-- `index.html` — Day-to-night station bistro homepage featuring *This Is Yarm* reader poll badges (`#1 Breakfast`, `#2 Coffee`, `#3 Pizza`), daytime brunch/deli preview, dark merlot evening wine/pizza chapter, and station-side directions.
-- `menus.html` — Keyboard-accessible 3-tab menu showcase (`Morning Coffee & Brunch`, `Deli Counter & Lunch`, `Evening Wine, Antipasti & Pizza`) with transparent `.ph` owner placeholders.
-- `bookings.html` — Accessible dual form switcher (**Reserve a Table** and **Wine Night & Private Hire Enquiry**) with client-side validation and demo-only status confirmation.
-- `css/styles.css` — Self-hosted typography (`Cormorant Garamond` + `DM Sans`), WCAG AA contrast palette (`#FAF6F0`, `#5C1D28`, `#1F191A`, `#354A39`, `#C9963B`), mobile-first layout (`360px–1440px`), and solid opaque sticky mobile action bar.
-- `js/main.js` — Accessible mobile navigation (`Escape` closes), ARIA tablist keyboard controls, URL hash deep-linking, and dummy form validation.
+- `index.html` — Centered Milanese broadsheet masthead with a live persisted **`☀ Daytime Deli` / `☾ Wine & Pizza`** mood switcher (`data-mood="day|night"`), *This Is Yarm* Triple-Crown Ribbon (`#1 Breakfast`, `#2 Coffee`, `#3 Pizza`), side-by-side **50/50 Dual Station-Arch Split Diptych** (*I · Mattina & Pranzo* vs *II · Sera & Enoteca*), Station Departure-Style Ledger Strip, and 3-leaf folded Italian *La Carta* preview.
+- `menus.html` — Full folded-paper *La Carta* menu showcase (`01 · Caffetteria & Brunch`, `02 · Banco Gastronomia`, `03 · Enoteca, Antipasti & Pizza`) with accessible ARIA tabs and transparent `.ph` owner placeholders.
+- `bookings.html` — Accessible dual form switcher (**Reserve a Table** and **Wine Night & Private Hire Enquiry**) with sitting pre-selection, client-side validation, and demo-only status confirmation.
+- `css/styles.css` — Self-hosted typography (`Cormorant Garamond` + `DM Sans`), WCAG AA+ contrast palette (`#FAF5EC`, `#38121A`, `#5A1C28`, `#1C1617`, `#E4BD70`), classical railway arch frames, and solid opaque sticky mobile action bar.
+- `js/main.js` — Live `localStorage` Day/Night mood switcher, keyboard-accessible mobile navigation, ARIA tablist controls, URL hash deep-linking, and dummy form validation.
 - `favicon.svg` & `images/logo-mark.svg` — Custom architectural station-arch & `S` monogram SVG emblems.
-- `PITCH.md` — Walk-in pitch guide, domain audit (`serinosdeli.co.uk` unregistered vs `serinosdeli.com` spam), 3-tap demo flow, and owner placeholder checklist.
+- `PITCH.md` — Walk-in pitch guide, domain audit, 3-tap demo flow, and owner placeholder checklist.
 
 ## Local Preview
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" data-mood="day">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,12 @@
   <title>Bookings &amp; Wine Nights | Serino's Deli &amp; Wine Bar (Concept Demo)</title>
   <meta name="description" content="Reserve a brunch or evening wine bar table, or enquire about private gatherings at Serino's Deli &amp; Wine Bar, 5 Station Road, Eaglescliffe.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <script>
+    try {
+      var m = localStorage.getItem('serinos_mood');
+      if (m === 'night' || m === 'day') document.documentElement.setAttribute('data-mood', m);
+    } catch (e) {}
+  </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -16,21 +22,51 @@
     <p>Concept design by Mark Aszkenasy – not the official website of Serino's Deli &amp; Wine Bar.</p>
   </div>
 
-  <div class="station-strip">
-    <div class="container station-strip__inner">
-      <span>5 Station Road, Eaglescliffe TS16 0BU · Right next to Eaglescliffe Station</span>
-      <span>Enquiries &amp; Tables: <a href="tel:01642788864">01642 788864</a></span>
+  <header class="milanese-masthead">
+    <div class="masthead-dateline">
+      <div class="container masthead-dateline__inner">
+        <span>Stazione di Eaglescliffe · 5 Station Road <span class="masthead-dateline__extra">TS16 0BU</span></span>
+        <span class="masthead-dateline__extra">Mattina · Pranzo · Enoteca</span>
+        <span>Tables: <a href="tel:01642788864">01642 788864</a></span>
+      </div>
     </div>
-  </div>
 
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand-lockup" href="index.html">
-        <img class="brand-lockup__mark" src="images/logo-mark.svg" width="72" height="72" alt="Serino's Deli &amp; Wine Bar monogram">
-        <span class="brand-lockup__text">
-          <span class="brand-lockup__name">Serino's</span>
-          <span class="brand-lockup__sub">Deli · Brunch · Wine Bar</span>
+    <div class="container masthead-stage">
+      <a class="masthead-mobile-crest" href="index.html" aria-label="Serino's home">
+        <img src="images/logo-mark.svg" width="36" height="36" alt="">
+      </a>
+
+      <nav class="masthead-nav" id="primary-nav" data-site-nav aria-label="Primary navigation">
+        <ul class="masthead-nav__list">
+          <li>
+            <a class="masthead-nav__link" href="index.html">
+              <span class="masthead-nav__num" aria-hidden="true">I.</span> Overview
+            </a>
+          </li>
+          <li>
+            <a class="masthead-nav__link" href="menus.html">
+              <span class="masthead-nav__num" aria-hidden="true">II.</span> La Carta
+            </a>
+          </li>
+          <li>
+            <a class="masthead-nav__link" href="bookings.html" aria-current="page">
+              <span class="masthead-nav__num" aria-hidden="true">III.</span> Bookings
+            </a>
+          </li>
+          <li>
+            <a class="masthead-nav__link" href="index.html#visit">
+              <span class="masthead-nav__num" aria-hidden="true">IV.</span> Find Us
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <a class="masthead-brand" href="index.html">
+        <span class="masthead-brand__arch" aria-hidden="true">
+          <img src="images/logo-mark.svg" width="28" height="28" alt="">
         </span>
+        <span class="masthead-brand__wordmark">Serino's</span>
+        <span class="masthead-brand__sub">Deli · Brunch · Enoteca</span>
       </a>
 
       <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
@@ -40,25 +76,26 @@
         <span>Menu</span>
       </button>
 
-      <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Primary navigation">
-        <ul class="site-nav__list">
-          <li><a class="site-nav__link" href="index.html">Overview</a></li>
-          <li><a class="site-nav__link" href="menus.html">Menus</a></li>
-          <li><a class="site-nav__link" href="bookings.html" aria-current="page">Bookings &amp; Wine Nights</a></li>
-          <li><a class="site-nav__link" href="index.html#visit">Find Us</a></li>
-        </ul>
-        <a class="site-nav__cta" href="bookings.html">Reserve a Table</a>
-      </nav>
+      <div class="masthead-mood-wrap">
+        <div class="mood-switcher" role="group" aria-label="Switch atmosphere mode">
+          <button class="mood-switcher__btn" type="button" data-mood-btn="day" aria-pressed="true">
+            <span aria-hidden="true">☀</span> Daytime Deli
+          </button>
+          <button class="mood-switcher__btn" type="button" data-mood-btn="night" aria-pressed="false">
+            <span aria-hidden="true">☾</span> Wine &amp; Pizza
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
   <main id="main-content">
-    <section class="page-hero" aria-labelledby="bookings-title">
+    <section class="page-masthead-deck" aria-labelledby="bookings-title">
       <div class="container">
-        <p class="eyebrow">5 Station Road · Eaglescliffe</p>
-        <h1 id="bookings-title">Reservations &amp; Wine Night Enquiries</h1>
+        <p class="page-masthead-deck__kicker">Stazione di Eaglescliffe · 5 Station Road</p>
+        <h1 id="bookings-title">Reservations &amp; Enoteca Private Hire</h1>
         <p>
-          Book a daytime brunch table, secure an evening spot for wine, antipasti and pizza, or enquire about hosting an intimate celebration steps from Eaglescliffe Station. Prefer to book by telephone? Call <a href="tel:01642788864"><strong>01642 788864</strong></a>.
+          Book a sunlit brunch table, secure an evening spot for wine, antipasti and stone-baked pizza, or enquire about hosting an intimate celebration steps from Eaglescliffe Station. Prefer to book by telephone? Call <a href="tel:01642788864"><strong>01642 788864</strong></a>.
         </p>
       </div>
     </section>
@@ -97,8 +134,8 @@
         <!-- PANEL 1: Reserve a Table -->
         <div class="tab-panel" id="panel-reserve" role="tabpanel" aria-labelledby="tab-reserve">
           <div class="form-card">
-            <h2 style="margin-bottom: 0.35rem;">Reserve a Table</h2>
-            <p style="color: var(--ink-muted); margin: 0 0 1.5rem;">
+            <h2 style="margin-bottom: 0.35rem;">Reserve a Brunch or Evening Table</h2>
+            <p style="color: var(--espresso-soft); margin: 0 0 1.5rem;">
               Available service days and sitting times follow <span class="ph">[Exact current daytime &amp; wine-evening hours – owner to confirm]</span>. Fields marked <span class="req-star">*</span> are required.
             </p>
 
@@ -234,7 +271,7 @@
         <div class="tab-panel" id="panel-hire" role="tabpanel" aria-labelledby="tab-hire" hidden>
           <div class="form-card">
             <h2 style="margin-bottom: 0.35rem;">Wine Night &amp; Private Hire Enquiry</h2>
-            <p style="color: var(--ink-muted); margin: 0 0 1.5rem;">
+            <p style="color: var(--espresso-soft); margin: 0 0 1.5rem;">
               Planning a birthday gathering, group antipasti &amp; wine tasting evening, or private celebration steps from Eaglescliffe Station? Share your outline below. Capacity and package details: <span class="ph">[Max group size &amp; private hire terms – owner to confirm]</span>.
             </p>
 
@@ -377,7 +414,7 @@
             5 Station Road, Eaglescliffe, Stockton-on-Tees TS16 0BU<br>
             Telephone: <a href="tel:01642788864">01642 788864</a>
           </p>
-          <p style="margin: 0; font-size: 0.88rem; color: #CFC3B8;">
+          <p style="margin: 0; font-size: 0.88rem; color: #D4C8BC;">
             Hours: <span class="ph">[Exact current daytime &amp; wine-evening hours – owner to confirm]</span>
           </p>
         </div>
@@ -386,7 +423,7 @@
           <p class="footer-heading">Navigation</p>
           <ul class="footer-links">
             <li><a href="index.html">Overview</a></li>
-            <li><a href="menus.html">Day &amp; Evening Menus</a></li>
+            <li><a href="menus.html">La Carta (Day &amp; Evening Menus)</a></li>
             <li><a href="bookings.html">Table Bookings &amp; Private Hire</a></li>
             <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Serinos+5+Station+Road+Eaglescliffe+TS16+0BU" target="_blank" rel="noopener noreferrer">Directions (Google Maps)</a></li>
           </ul>

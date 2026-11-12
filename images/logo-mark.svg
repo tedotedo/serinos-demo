@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="72" height="72" role="img" aria-label="Serino's Deli &amp; Wine Bar emblem">
+  <rect x="2" y="2" width="68" height="68" rx="3" fill="#5C1D28"/>
+  <rect x="6.5" y="6.5" width="59" height="59" rx="1.5" fill="none" stroke="#C9963B" stroke-width="1.25"/>
+  <!-- Station arch & wine chalice geometry -->
+  <path d="M16 58V31c0-11.046 8.954-20 20-20s20 8.954 20 20v27" fill="none" stroke="#C9963B" stroke-width="1.15"/>
+  <line x1="12" y1="58" x2="60" y2="58" stroke="#C9963B" stroke-width="1.15"/>
+  <!-- Bespoke serif S -->
+  <path d="M43.2 26.8c-1.6-2.5-4.3-3.8-7.6-3.8-4.4 0-7.4 2.2-7.4 5.5 0 3.5 3.3 4.9 7.8 6.3 5.2 1.6 9.2 3.5 9.2 8.7 0 5.5-4.7 9.1-11.1 9.1-4.8 0-8.8-1.8-10.9-5.1l2.9-2.3c1.8 2.6 4.7 3.9 8.1 3.9 4.1 0 6.9-2 6.9-5.2 0-3.2-2.7-4.6-7.6-6.1-5.3-1.6-9.4-3.5-9.4-8.9 0-5.3 4.5-8.9 11.2-8.9 4.3 0 7.8 1.5 10 4.4l-2.1 2.4z" fill="#FAF6F0"/>
+  <!-- Day sun / Night star accent -->
+  <path d="M36 14.5l1.3 2.7 2.7 1.3-2.7 1.3-1.3 2.7-1.3-2.7-2.7-1.3 2.7-1.3z" fill="#C9963B"/>
+</svg>

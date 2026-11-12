@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Menus | Serino's Deli &amp; Wine Bar — Eaglescliffe (Concept Demo)</title>
+  <meta name="description" content="Daytime coffee, brunch, deli counter and evening wine, antipasti and pizza menu layout for Serino's Deli &amp; Wine Bar at 5 Station Road, Eaglescliffe.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="concept-banner" role="region" aria-label="Concept website notice">
+    <p>Concept design by Mark Aszkenasy – not the official website of Serino's Deli &amp; Wine Bar.</p>
+  </div>
+
+  <div class="station-strip">
+    <div class="container station-strip__inner">
+      <span>5 Station Road, Eaglescliffe TS16 0BU · Right next to Eaglescliffe Station</span>
+      <span>Enquiries &amp; Tables: <a href="tel:01642788864">01642 788864</a></span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand-lockup" href="index.html">
+        <img class="brand-lockup__mark" src="images/logo-mark.svg" width="72" height="72" alt="Serino's Deli &amp; Wine Bar monogram">
+        <span class="brand-lockup__text">
+          <span class="brand-lockup__name">Serino's</span>
+          <span class="brand-lockup__sub">Deli · Brunch · Wine Bar</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bars" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span>Menu</span>
+      </button>
+
+      <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Primary navigation">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="index.html">Overview</a></li>
+          <li><a class="site-nav__link" href="menus.html" aria-current="page">Menus</a></li>
+          <li><a class="site-nav__link" href="bookings.html">Bookings &amp; Wine Nights</a></li>
+          <li><a class="site-nav__link" href="index.html#visit">Find Us</a></li>
+        </ul>
+        <a class="site-nav__cta" href="bookings.html">Reserve a Table</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="page-hero" aria-labelledby="menus-title">
+      <div class="container">
+        <p class="eyebrow">From First Espresso to Last Pour</p>
+        <h1 id="menus-title">Day &amp; Evening Menus</h1>
+        <p>
+          Designed so guests can check brunch plates, deli lunch options, or evening wine and pizza lists in seconds on mobile — without hunting through social feeds or PDFs.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Interactive menu chapters">
+      <div class="container">
+        <!-- Accessible ARIA Tab Switcher -->
+        <div class="tabs-bar" role="tablist" aria-label="Select a Serino's menu">
+          <button
+            class="tab-btn"
+            type="button"
+            role="tab"
+            id="tab-brunch"
+            aria-selected="true"
+            aria-controls="panel-brunch"
+            tabindex="0"
+          >
+            Morning Coffee &amp; Brunch
+          </button>
+
+          <button
+            class="tab-btn"
+            type="button"
+            role="tab"
+            id="tab-deli"
+            aria-selected="false"
+            aria-controls="panel-deli"
+            tabindex="-1"
+          >
+            Deli Counter &amp; Lunch
+          </button>
+
+          <button
+            class="tab-btn"
+            type="button"
+            role="tab"
+            id="tab-evening"
+            aria-selected="false"
+            aria-controls="panel-evening"
+            data-hash="evening-wine"
+            tabindex="-1"
+          >
+            Evening Wine, Antipasti &amp; Pizza
+          </button>
+        </div>
+
+        <!-- TAB PANEL 1: Morning Coffee & Brunch -->
+        <div class="tab-panel" id="panel-brunch" role="tabpanel" aria-labelledby="tab-brunch">
+          <div class="menu-sheet">
+            <div class="menu-sheet__header">
+              <div>
+                <p class="eyebrow" style="margin-bottom: 0.35rem;">Voted #1 Breakfast &amp; #2 Coffee on This Is Yarm</p>
+                <h2 style="margin: 0;">Morning Coffee &amp; Brunch</h2>
+              </div>
+              <span class="ph">[Morning service hours – owner to confirm]</span>
+            </div>
+
+            <div class="menu-section-group">
+              <h3>Brunch Plates</h3>
+              <ul class="menu-rows">
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Signature Brunch Dish – owner to supply]</span>
+                    <span class="menu-row__desc">Ingredients, sourdough or bread note, and dietary tags <span class="ph">[V / GF options – owner to confirm]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Eggs &amp; Savoury Brunch Plate – owner to supply]</span>
+                    <span class="menu-row__desc">Seasonal accompaniment &amp; house dressing details <span class="ph">[Description – owner to supply]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Sweet / Brioche or Pastry Brunch Option – owner to supply]</span>
+                    <span class="menu-row__desc">House compote, mascarpone or toppings <span class="ph">[Description – owner to supply]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Station-Side Quick Morning Roll / Breakfast Ciabatta – owner to supply]</span>
+                    <span class="menu-row__desc">Ideal to dine in or grab before boarding at Eaglescliffe Station</span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="menu-section-group">
+              <h3>Barista Coffee &amp; Morning Drinks</h3>
+              <ul class="menu-rows">
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Espresso, Flat White, Latte &amp; Cappuccino – owner to supply]</span>
+                    <span class="menu-row__desc">Roastery note &amp; alternative milk options <span class="ph">[Coffee blend &amp; milks – owner to confirm]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Loose-Leaf Teas, Iced Drinks &amp; Fresh Juices – owner to supply]</span>
+                    <span class="menu-row__desc">Served in-house or in takeaway cups for rail commuters</span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB PANEL 2: Deli Counter & Lunch -->
+        <div class="tab-panel" id="panel-deli" role="tabpanel" aria-labelledby="tab-deli" hidden>
+          <div class="menu-sheet">
+            <div class="menu-sheet__header">
+              <div>
+                <p class="eyebrow" style="margin-bottom: 0.35rem;">Dine In · Takeaway · Local Delivery</p>
+                <h2 style="margin: 0;">Deli Counter &amp; Lunch</h2>
+              </div>
+              <span class="ph">[Deli &amp; lunch serving hours – owner to confirm]</span>
+            </div>
+
+            <div class="menu-section-group">
+              <h3>Artisan Focaccia, Panini &amp; Sandwiches</h3>
+              <ul class="menu-rows">
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[House Deli Focaccia / Ciabatta #1 – owner to supply]</span>
+                    <span class="menu-row__desc">Cured meats, cheeses, pesto or roasted vegetables <span class="ph">[Filling details – owner to supply]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Toasted Deli Sandwich / Melt #2 – owner to supply]</span>
+                    <span class="menu-row__desc">Served warm with side garnish <span class="ph">[Details – owner to supply]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Vegetarian / Plant-Focused Counter Lunch – owner to supply]</span>
+                    <span class="menu-row__desc">Prepared fresh daily <span class="ph">[Details – owner to supply]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="menu-section-group">
+              <h3>Deli Counter Specials &amp; Uber Eats</h3>
+              <ul class="menu-rows">
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Daily Soup, Salad Bowl or Savoury Bake – owner to supply]</span>
+                    <span class="menu-row__desc">Rotating counter selection at 5 Station Road</span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Cakes, Cannoli &amp; Counter Bakes – owner to supply]</span>
+                    <span class="menu-row__desc">Also available for local delivery on Uber Eats: <span class="ph">[Uber Eats link – owner to confirm]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB PANEL 3: Evening Wine, Antipasti & Pizza -->
+        <div class="tab-panel" id="panel-evening" role="tabpanel" aria-labelledby="tab-evening" hidden>
+          <div class="menu-sheet menu-sheet--evening">
+            <div class="menu-sheet__header">
+              <div>
+                <p class="eyebrow" style="margin-bottom: 0.35rem;">Voted #3 Pizza on This Is Yarm</p>
+                <h2 style="margin: 0;">Evening Wine, Antipasti &amp; Pizza</h2>
+              </div>
+              <span class="ph">[Wine-evening nights &amp; kitchen hours – owner to confirm]</span>
+            </div>
+
+            <div class="menu-section-group">
+              <h3>Antipasti &amp; Grazing Boards</h3>
+              <ul class="menu-rows">
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Serino's Sharing Charcuterie &amp; Cheese Board – owner to supply]</span>
+                    <span class="menu-row__desc">Selection of cured meats, cheeses, olives &amp; bread <span class="ph">[For two / group pricing – owner to confirm]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Small Plates, Olives &amp; Bruschetta – owner to supply]</span>
+                    <span class="menu-row__desc">Ideal alongside a glass of red, white or sparkling wine</span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="menu-section-group">
+              <h3>Artisan Pizzas</h3>
+              <ul class="menu-rows">
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Classic Margherita / Tomato, Fior di Latte &amp; Basil – owner to confirm]</span>
+                    <span class="menu-row__desc">Voted #3 Pizza on This Is Yarm · <span class="ph">[Dough &amp; topping notes – owner to supply]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Signature Cured Meat / Spicy Salami Pizza – owner to supply]</span>
+                    <span class="menu-row__desc"><span class="ph">[Topping details – owner to supply]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Seasonal White Base or Vegetarian Pizza – owner to supply]</span>
+                    <span class="menu-row__desc"><span class="ph">[Topping details – owner to supply]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="menu-section-group">
+              <h3>Wines by the Glass, Bottle &amp; Aperitivi</h3>
+              <ul class="menu-rows">
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Curated Red, White, Rosé &amp; Sparkling List – owner to supply]</span>
+                    <span class="menu-row__desc">175ml / 250ml / Bottle measures · <span class="ph">[Wine list – owner to supply]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£— / £—]</span></div>
+                </li>
+                <li class="menu-row">
+                  <div class="menu-row__main">
+                    <span class="ph">[Aperitivo Spritzes, Peroni / Craft Beers &amp; Softs – owner to supply]</span>
+                    <span class="menu-row__desc"><span class="ph">[Drinks list – owner to supply]</span></span>
+                  </div>
+                  <div class="menu-row__price"><span class="ph">[£—]</span></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zero-Homework Owner Note -->
+        <aside class="owner-zero-homework" aria-label="Menu onboarding note">
+          <strong>Zero-Homework Launch Note for the Owner</strong>
+          <p>
+            Send a quick photo of your current menu board or printed wine list to populate every dish and price live — no typing, spreadsheets, or formatting needed on your side. Allergen guidance is always confirmed directly with the team at <a href="tel:01642788864">01642 788864</a>.
+          </p>
+        </aside>
+
+        <div class="btn-group" style="margin-top: 2rem;">
+          <a class="btn btn--primary" href="bookings.html">Reserve a Table</a>
+          <a class="btn btn--outline" href="bookings.html#panel-hire">Enquire About Wine Nights &amp; Hire</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-heading">Serino's Deli &amp; Wine Bar</p>
+          <p style="margin: 0 0 0.65rem; color: #E5DCD2;">
+            5 Station Road, Eaglescliffe, Stockton-on-Tees TS16 0BU<br>
+            Telephone: <a href="tel:01642788864">01642 788864</a>
+          </p>
+          <p style="margin: 0; font-size: 0.88rem; color: #CFC3B8;">
+            Hours: <span class="ph">[Exact current daytime &amp; wine-evening hours – owner to confirm]</span>
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-heading">Navigation</p>
+          <ul class="footer-links">
+            <li><a href="index.html">Overview</a></li>
+            <li><a href="menus.html">Day &amp; Evening Menus</a></li>
+            <li><a href="bookings.html">Table Bookings &amp; Private Hire</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Serinos+5+Station+Road+Eaglescliffe+TS16+0BU" target="_blank" rel="noopener noreferrer">Directions (Google Maps)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Local Recognition</p>
+          <p style="margin: 0; font-size: 0.9rem; color: #E5DCD2;">
+            Voted <strong>#1 Breakfast</strong>, <strong>#2 Coffee</strong>, and <strong>#3 Pizza</strong> in This Is Yarm community polls. Also available via Uber Eats.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-disclaimers">
+        <p><strong>Concept Disclaimer:</strong> Unsolicited concept website created for demonstration purposes — not the official website of Serino's Deli &amp; Wine Bar. All bracketed items are illustrative placeholders awaiting owner confirmation.</p>
+        <p><strong>Illustrative Image Credit:</strong> Editorial food and hospitality photographs shown across this concept site are AI-generated illustrative images created solely to preview visual composition and do not depict actual menu items or the physical premises.</p>
+        <p class="footer-credit">Design by Mark Aszkenasy</p>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="mobile-action-bar" aria-label="Quick mobile actions">
+    <a class="mobile-action-bar__btn" href="tel:01642788864">Call</a>
+    <a class="mobile-action-bar__btn" href="menus.html" aria-current="page">Menus</a>
+    <a class="mobile-action-bar__btn mobile-action-bar__btn--primary" href="bookings.html">Book Table</a>
+  </nav>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

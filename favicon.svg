@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Serino's Deli &amp; Wine Bar monogram">
+  <rect width="64" height="64" rx="4" fill="#5C1D28"/>
+  <rect x="4.5" y="4.5" width="55" height="55" rx="2" fill="none" stroke="#C9963B" stroke-width="1.5"/>
+  <path d="M16 50V28c0-8.837 7.163-16 16-16s16 7.163 16 16v22" fill="none" stroke="#C9963B" stroke-width="1.2" opacity="0.65"/>
+  <path d="M38.5 23.5c-1.4-2.2-3.8-3.3-6.7-3.3-3.9 0-6.6 2-6.6 4.9 0 3.1 2.9 4.4 6.9 5.6 4.6 1.4 8.2 3.1 8.2 7.7 0 4.9-4.2 8.1-9.8 8.1-4.3 0-7.8-1.6-9.7-4.5l2.6-2.1c1.6 2.3 4.2 3.5 7.2 3.5 3.6 0 6.1-1.8 6.1-4.6 0-2.8-2.4-4.1-6.7-5.4-4.7-1.4-8.4-3.1-8.4-7.9 0-4.7 4-7.9 9.9-7.9 3.8 0 6.9 1.3 8.9 3.9l-1.9 2z" fill="#FAF6F0"/>
+  <circle cx="32" cy="52.5" r="1.8" fill="#C9963B"/>
+</svg>

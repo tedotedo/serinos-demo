@@ -540,6 +540,7 @@ html[data-mood="night"] .page-masthead-deck .ph {
     font-size: 0.76rem;
     letter-spacing: 0.1em;
     border-bottom: 2px solid transparent;
+    white-space: nowrap;
   }
   .masthead-nav__link:hover {
     color: var(--masthead-accent);
@@ -547,6 +548,36 @@ html[data-mood="night"] .page-masthead-deck .ph {
   }
   .masthead-nav__link[aria-current="page"] {
     border-bottom-color: var(--masthead-accent);
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1280px) {
+  .masthead-stage {
+    gap: 0.75rem;
+  }
+  .masthead-brand__wordmark {
+    font-size: 1.72rem;
+    letter-spacing: 0.09em;
+  }
+  .masthead-brand__sub {
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+  }
+  .masthead-nav__list {
+    gap: 0.68rem;
+  }
+  .masthead-nav__link {
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    gap: 0.25rem;
+  }
+  .masthead-nav__num {
+    font-size: 0.78rem;
+  }
+  .mood-switcher__btn {
+    font-size: 0.68rem;
+    padding: 0.42rem 0.55rem;
+    white-space: nowrap;
   }
 }
 

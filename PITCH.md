@@ -75,3 +75,23 @@ Every bracketed `.ph` item across `index.html`, `menus.html`, and `bookings.html
   - [ ] Preferred notification inbox / WhatsApp / booking system destination for live form submissions
 - [ ] **Photography Swap:**
   - [ ] Replace `images/hero.jpg` and `images/feature.jpg` (AI-generated illustrative concept visuals) with authentic photographs of Serino's dishes, coffee, wine nights, and 5 Station Road interior.
+
+---
+
+## Set D — Station Departure Board (`/d/`)
+
+- **Live Concept URL:** https://tedotedo.github.io/serinos-demo/d/
+- **What it is:** The page follows the clock: a split-flap board shows which service is on now, and the headline, photo, colours and open menu tab change with it.
+- **Reach it from any page:** tap **D** in the Concept switcher in the top banner.
+
+### 3-Tap Phone Demo (Set D)
+1. Tap the **20:00** preview chip under the board: the rows flip, the page turns dark and the headline becomes "Wine and pizza tonight."
+2. Scroll to **How long until your train?** and tap **20 min**, then **5 min**, to show the suggestion change.
+3. Tap **Book**, fill in the form and submit: the confirmation prints as a train-style ticket.
+
+### One-Line Pitch
+> *"It always opens on what you're serving right now, so the breakfast crowd and the wine crowd each see their own Serino's."*
+
+### Know Before You Show
+- Service times on the board are illustrative (`08:00`, `11:30`, `16:30`, `18:00`) and labelled as demo. The train picker does not use live train times.
+- Demo only: no form sends anything, and unknown details stay as bracketed `[...]` placeholders for the owner to confirm.

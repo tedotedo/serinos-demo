@@ -27,3 +27,9 @@ Then open `http://localhost:8081` in a browser.
 - Every HTML page carries `<meta name="robots" content="noindex, nofollow">`.
 - Zero external network requests (all fonts, styles, scripts, and SVGs are self-hosted locally).
 - Zero fabricated dishes, prices, reviews, or awards; unknown details are clearly marked in `.ph` tags for owner confirmation.
+
+## Set D — Station Departure Board
+
+- `d/index.html`, `d/css/styles.css`, `d/js/app.js` — The page follows the clock: a split-flap board shows which service is on now, and the headline, photo, colours and open menu tab change with it.
+- Live at https://tedotedo.github.io/serinos-demo/d/. Reuses the root `fonts/` and `images/`; same `noindex`, zero external requests and `.ph` placeholder rules as Sets A–C.
+- Service times on the board are illustrative (`08:00`, `11:30`, `16:30`, `18:00`) and labelled as demo. The train picker does not use live train times.

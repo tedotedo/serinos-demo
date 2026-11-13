@@ -1884,3 +1884,16 @@ textarea.form-control {
     min-height: 40px;
   }
 }
+
+/* === Android Chrome / Samsung Internet & 360px Polish === */
+a, button, summary, label, input, select {
+  -webkit-tap-highlight-color: transparent;
+}
+@media (max-width: 389px) {
+  .diptych-jump-link {
+    font-size: 0.69rem;
+    padding: 0.58rem 0.35rem;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+}

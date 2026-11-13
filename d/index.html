@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-service="breakfast">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0F0E0C">
+  <title>Serino's Deli &amp; Wine Bar | Concept D — Station Departure Board (5 Station Rd)</title>
+  <meta name="description" content="Concept D for Serino's Deli &amp; Wine Bar at 5 Station Road, Eaglescliffe — a live station departure board that shows what is being served right now, from breakfast to wine and pizza.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Persistent Top Concept Banner + [A] [B] [C] [D] Switcher -->
+  <div class="concept-banner" role="region" aria-label="Concept website notice">
+    <div class="concept-banner__inner">
+      <p>Concept design by Mark Aszkenasy – not the official website of Serino's Deli &amp; Wine Bar.</p>
+      <nav class="concept-switcher" aria-label="Switch concept version">
+        <span class="concept-switcher__label">Concept:</span>
+        <a class="concept-switcher__pill" href="../index.html"><span>A</span></a>
+        <a class="concept-switcher__pill" href="../b/index.html"><span>B</span></a>
+        <a class="concept-switcher__pill" href="../c/index.html"><span>C</span></a>
+        <a class="concept-switcher__pill is-active" href="index.html" aria-current="page"><span>D</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="site-head">
+    <div class="wrap site-head__inner">
+      <a class="brand" href="#board">
+        <img src="../images/logo-mark.svg" width="34" height="34" alt="">
+        <span>
+          <span class="brand__name">Serino's</span>
+          <span class="brand__meta">Deli &amp; Wine Bar · Eaglescliffe</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="#la-carta">Menu</a>
+        <a href="#train">Catching a train?</a>
+        <a href="#find-us">Find us</a>
+      </nav>
+      <a class="btn btn--amber site-head__cta" href="#book">Book a table</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- 1. The departure board -->
+    <section class="board-section" id="board" aria-labelledby="board-title">
+      <div class="wrap">
+        <div class="board">
+          <div class="board__head">
+            <div>
+              <p class="board__station">Serino's · 5 Station Road</p>
+              <h1 class="board__title" id="board-title">Today's services</h1>
+            </div>
+            <div class="board__clock" aria-live="off">
+              <span class="board__clock-label" data-clock-label>Time now</span>
+              <span class="board__clock-time" data-clock>--:--:--</span>
+            </div>
+          </div>
+
+          <div class="board__cols" aria-hidden="true">
+            <span>Time</span><span>Service</span><span>Status</span>
+          </div>
+
+          <ol class="board__rows" data-board-rows></ol>
+
+          <p class="board__ticker"><span data-ticker>Right beside Eaglescliffe railway station.</span></p>
+        </div>
+
+        <div class="preview" role="group" aria-labelledby="preview-label">
+          <p class="preview__label" id="preview-label">See the site at another time of day</p>
+          <div class="preview__chips">
+            <button type="button" class="chip is-active" data-preview="live" aria-pressed="true">Live</button>
+            <button type="button" class="chip" data-preview="08:15" aria-pressed="false">08:15</button>
+            <button type="button" class="chip" data-preview="12:40" aria-pressed="false">12:40</button>
+            <button type="button" class="chip" data-preview="15:30" aria-pressed="false">15:30</button>
+            <button type="button" class="chip" data-preview="17:10" aria-pressed="false">17:10</button>
+            <button type="button" class="chip" data-preview="20:00" aria-pressed="false">20:00</button>
+          </div>
+          <p class="preview__note"><span class="ph">[Demo service times – owner to confirm]</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Now serving -->
+    <section class="now" aria-labelledby="now-title">
+      <div class="wrap now__grid">
+        <div class="now__copy">
+          <p class="eyebrow" data-now-eyebrow>Now serving</p>
+          <h2 class="now__title" id="now-title" data-now-title>Breakfast is on.</h2>
+          <p class="now__lead" data-now-lead></p>
+          <div class="now__actions">
+            <a class="btn btn--ink" href="#la-carta" data-now-menu>See the breakfast menu</a>
+            <a class="btn btn--ghost" href="#book">Book a table</a>
+          </div>
+          <p class="now__next" data-now-next></p>
+        </div>
+        <figure class="now__photo">
+          <img data-now-img src="../images/hero.jpg" width="1200" height="896" alt="Illustrative image of the Serino's concept, daytime deli" loading="eager">
+          <figcaption>Illustrative image – not Serino's own photography.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3. Voted locally: platform roundels -->
+    <section class="platforms" aria-labelledby="platforms-title">
+      <div class="wrap">
+        <h2 class="section-title" id="platforms-title">Voted by Yarm</h2>
+        <ul class="platforms__list">
+          <li><span class="roundel">1</span><span><strong>Breakfast</strong><small>#1 on This Is Yarm</small></span></li>
+          <li><span class="roundel">2</span><span><strong>Coffee</strong><small>#2 on This Is Yarm</small></span></li>
+          <li><span class="roundel">3</span><span><strong>Pizza</strong><small>#3 on This Is Yarm</small></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. Catching a train? -->
+    <section class="train" id="train" aria-labelledby="train-title">
+      <div class="wrap">
+        <p class="eyebrow">Next door to the platform</p>
+        <h2 class="section-title" id="train-title">How long until your train?</h2>
+        <div class="train__chips" role="group" aria-label="Minutes until your train">
+          <button type="button" class="chip chip--lg" data-mins="5" aria-pressed="false">5 min</button>
+          <button type="button" class="chip chip--lg is-active" data-mins="10" aria-pressed="true">10 min</button>
+          <button type="button" class="chip chip--lg" data-mins="20" aria-pressed="false">20 min</button>
+          <button type="button" class="chip chip--lg" data-mins="40" aria-pressed="false">40 min +</button>
+        </div>
+        <div class="train__answer" aria-live="polite">
+          <p class="train__verdict" data-train-verdict></p>
+          <p class="train__detail" data-train-detail></p>
+        </div>
+        <p class="train__note"><span class="ph">[Suggestions &amp; takeaway options – owner to confirm]</span> This picker does not use live train times.</p>
+      </div>
+    </section>
+
+    <!-- 5. La Carta as a timetable -->
+    <section class="carta" id="la-carta" aria-labelledby="carta-title">
+      <div class="wrap">
+        <p class="eyebrow"><em>La Carta</em></p>
+        <h2 class="section-title" id="carta-title">The menu, by time of day</h2>
+
+        <div class="tabs" role="tablist" aria-label="Menu by service">
+          <button type="button" role="tab" id="tab-breakfast" aria-controls="panel-breakfast" aria-selected="true" data-tab="breakfast">Breakfast</button>
+          <button type="button" role="tab" id="tab-deli" aria-controls="panel-deli" aria-selected="false" tabindex="-1" data-tab="deli">Deli &amp; lunch</button>
+          <button type="button" role="tab" id="tab-aperitivo" aria-controls="panel-aperitivo" aria-selected="false" tabindex="-1" data-tab="aperitivo">Aperitivo</button>
+          <button type="button" role="tab" id="tab-wine" aria-controls="panel-wine" aria-selected="false" tabindex="-1" data-tab="wine">Wine &amp; pizza</button>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-breakfast" aria-labelledby="tab-breakfast">
+          <p class="panel__hours"><span class="ph">[Morning service hours – owner to confirm]</span></p>
+          <ul class="menu">
+            <li><span class="ph">[Signature brunch dish – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Eggs &amp; savoury brunch plate – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Sweet brioche or pastry option – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Station-side breakfast roll – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Espresso, flat white, latte &amp; cappuccino – owner to supply]</span><span class="menu__price">[£—]</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-deli" aria-labelledby="tab-deli" hidden>
+          <p class="panel__hours"><span class="ph">[Deli &amp; lunch serving hours – owner to confirm]</span></p>
+          <ul class="menu">
+            <li><span class="ph">[House deli focaccia – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Toasted deli sandwich – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Vegetarian counter lunch – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Daily soup, salad bowl or savoury bake – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Cakes, cannoli &amp; counter bakes – owner to supply]</span><span class="menu__price">[£—]</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-aperitivo" aria-labelledby="tab-aperitivo" hidden>
+          <p class="panel__hours"><span class="ph">[Aperitivo hours – owner to confirm]</span></p>
+          <ul class="menu">
+            <li><span class="ph">[Aperitivo spritzes – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Small plates, olives &amp; bruschetta – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Beers &amp; soft drinks – owner to supply]</span><span class="menu__price">[£—]</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-wine" aria-labelledby="tab-wine" hidden>
+          <p class="panel__hours"><span class="ph">[Wine-evening nights &amp; kitchen hours – owner to confirm]</span></p>
+          <ul class="menu">
+            <li><span class="ph">[Sharing charcuterie &amp; cheese board – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Margherita – owner to confirm]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Signature cured-meat pizza – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Seasonal vegetarian pizza – owner to supply]</span><span class="menu__price">[£—]</span></li>
+            <li><span class="ph">[Red, white, rosé &amp; sparkling list – owner to supply]</span><span class="menu__price">[£—]</span></li>
+          </ul>
+        </div>
+
+        <p class="carta__order"><span class="ph">[Uber Eats link – owner to confirm]</span></p>
+      </div>
+    </section>
+
+    <!-- 6. Book: the confirmation is a ticket -->
+    <section class="book" id="book" aria-labelledby="book-title">
+      <div class="wrap book__grid">
+        <div>
+          <p class="eyebrow">Reserve</p>
+          <h2 class="section-title" id="book-title">Book a table</h2>
+          <p class="book__lead">Tell us when and how many. We reply to confirm. <span class="ph">[Max group size &amp; private hire terms – owner to confirm]</span></p>
+
+          <form class="form" data-book-form novalidate>
+            <div class="form__row">
+              <label for="bk-date">Date</label>
+              <input id="bk-date" name="date" type="date" required>
+            </div>
+            <div class="form__row form__row--half">
+              <div>
+                <label for="bk-time">Time</label>
+                <select id="bk-time" name="time" required>
+                  <option value="">Choose</option>
+                  <option>09:00</option><option>10:00</option><option>12:00</option><option>13:00</option>
+                  <option>17:30</option><option>18:30</option><option>19:30</option><option>20:30</option>
+                </select>
+              </div>
+              <div>
+                <label for="bk-guests">Guests</label>
+                <select id="bk-guests" name="guests" required>
+                  <option>2</option><option>1</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option>
+                </select>
+              </div>
+            </div>
+            <div class="form__row">
+              <label for="bk-name">Name</label>
+              <input id="bk-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="form__row">
+              <label for="bk-phone">Phone</label>
+              <input id="bk-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+            </div>
+            <p class="form__error" data-book-error role="alert" hidden>Please fill in the date, time, your name and a phone number.</p>
+            <button class="btn btn--amber btn--block" type="submit">Request this table</button>
+            <p class="form__fine">Demo only. Nothing is sent from this concept page.</p>
+          </form>
+        </div>
+
+        <div class="ticket-wrap" aria-live="polite">
+          <div class="ticket" data-ticket>
+            <div class="ticket__band"></div>
+            <div class="ticket__body">
+              <p class="ticket__class">Table reservation <span>Demo</span></p>
+              <dl class="ticket__grid">
+                <div><dt>From</dt><dd>Your front door</dd></div>
+                <div><dt>To</dt><dd>Serino's, 5 Station Rd</dd></div>
+                <div><dt>Date</dt><dd data-t-date>—</dd></div>
+                <div><dt>Time</dt><dd data-t-time>—</dd></div>
+                <div><dt>Guests</dt><dd data-t-guests>—</dd></div>
+                <div><dt>Name</dt><dd data-t-name>—</dd></div>
+              </dl>
+              <p class="ticket__status" data-t-status>Fill in the form and your ticket prints here.</p>
+            </div>
+            <div class="ticket__band"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Find us -->
+    <section class="find" id="find-us" aria-labelledby="find-title">
+      <div class="wrap find__grid">
+        <div>
+          <p class="eyebrow">Find us</p>
+          <h2 class="section-title" id="find-title">Out of the station, turn to Station Road.</h2>
+          <address class="find__address">
+            5 Station Road, Eaglescliffe<br>Stockton-on-Tees TS16 0BU
+          </address>
+          <p><a class="find__tel" href="tel:01642788864">01642 788864</a></p>
+          <p><span class="ph">[Exact current daytime &amp; wine-evening hours – owner to confirm]</span></p>
+          <p><span class="ph">[Evening service days &amp; last orders – owner to confirm]</span></p>
+        </div>
+        <div class="line" aria-hidden="true">
+          <div class="line__stop"><i></i><span>Eaglescliffe station</span></div>
+          <div class="line__stop"><i></i><span>Station Road</span></div>
+          <div class="line__stop line__stop--end"><i></i><span>Serino's · No. 5</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p class="foot__links">
+        <a href="../index.html">Concept A</a>
+        <a href="../b/index.html">Concept B</a>
+        <a href="../c/index.html">Concept C</a>
+        <a href="index.html" aria-current="page">Concept D</a>
+      </p>
+      <p><strong>Concept disclaimer:</strong> Concept design by Mark Aszkenasy – not the official website of Serino's Deli &amp; Wine Bar. All bracketed items are placeholders awaiting owner confirmation. Service times on the board are illustrative.</p>
+      <p><strong>Illustrative image credit:</strong> Photographs shown on this concept page are AI-generated illustrative images used solely to demonstrate visual layout and do not depict actual Serino's dishes or premises.</p>
+    </div>
+  </footer>
+
+  <!-- Solid mobile dock -->
+  <nav class="dock" aria-label="Quick actions">
+    <a href="tel:01642788864">Call</a>
+    <a href="#la-carta">Menu</a>
+    <a class="dock__primary" href="#book">Book</a>
+  </nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

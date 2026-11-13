@@ -111,6 +111,19 @@
 
     <section class="section" aria-label="Booking and private hire forms">
       <div class="container">
+        <!-- 1-Tap Experience Presets -->
+        <div class="experience-presets-card experience-presets-card--compact" aria-label="1-tap booking experience presets">
+          <div class="experience-presets-card__head">
+            <span class="experience-presets-card__kicker">1-Tap Experience Presets</span>
+            <p>Tap an occasion to pre-fill sitting, party size and atmosphere mood:</p>
+          </div>
+          <div class="preset-pills-row" role="group" aria-label="Experience presets">
+            <button class="preset-pill" type="button" data-serinos-preset="brunch" aria-pressed="false">☀ Morning Brunch Table (#1 Voted)</button>
+            <button class="preset-pill" type="button" data-serinos-preset="wine-for-2" aria-pressed="false">🍷 Candlelit Wine &amp; Pizza for 2</button>
+            <button class="preset-pill" type="button" data-serinos-preset="group-arch" aria-pressed="false">🥂 Station-Arch Group Evening</button>
+          </div>
+        </div>
+
         <!-- Accessible Dual Form Tab Switcher -->
         <div class="tabs-bar" role="tablist" aria-label="Choose booking type">
           <button
@@ -271,6 +284,7 @@
               <div class="demo-status-panel" data-demo-status role="status" aria-live="polite" tabindex="-1" hidden>
                 <p class="demo-status-panel__headline">Demo only – in the live site this would go straight to Serino's Deli &amp; Wine Bar.</p>
                 <p class="demo-status-panel__summary" data-demo-summary></p>
+                <div class="owner-receipt-ticket" data-owner-ticket></div>
               </div>
             </form>
           </div>
@@ -406,6 +420,7 @@
               <div class="demo-status-panel" data-demo-status role="status" aria-live="polite" tabindex="-1" hidden>
                 <p class="demo-status-panel__headline">Demo only – in the live site this would go straight to Serino's Deli &amp; Wine Bar.</p>
                 <p class="demo-status-panel__summary" data-demo-summary></p>
+                <div class="owner-receipt-ticket" data-owner-ticket></div>
               </div>
             </form>
           </div>
@@ -459,6 +474,8 @@
     <a class="mobile-action-bar__btn" href="menus.html">Menus</a>
     <a class="mobile-action-bar__btn mobile-action-bar__btn--primary" href="bookings.html" aria-current="page">Book Table</a>
   </nav>
+
+  <div class="micro-toast" data-micro-toast role="status" aria-live="polite" hidden></div>
 
   <script src="js/main.js"></script>
 </body>

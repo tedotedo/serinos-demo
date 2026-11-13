@@ -174,20 +174,19 @@ a:hover {
   background-color: var(--ink);
   color: var(--travertine);
   border-bottom: 1px solid rgba(252, 250, 246, 0.16);
-  font-size: 0.74rem;
-  line-height: 1.35;
-  padding: 0.3rem 0.65rem;
-  text-align: center;
+  font-size: 0.68rem;
+  line-height: 1.25;
+  padding: 0.18rem 0.55rem;
+  text-align: left;
 }
 
 .concept-banner__inner {
   max-width: var(--container);
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: center;
-  gap: 0.2rem 0.75rem;
+  gap: 0.35rem;
 }
 
 .concept-banner p {
@@ -199,11 +198,12 @@ a:hover {
 .concept-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 0.15rem;
+  gap: 0.08rem;
   flex-shrink: 0;
 }
 
 .concept-switcher__label {
+  display: none;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -212,13 +212,19 @@ a:hover {
   margin-right: 0.2rem;
 }
 
+@media (min-width: 580px) {
+  .concept-switcher__label {
+    display: inline;
+  }
+}
+
 .concept-switcher__pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 42px;
-  min-height: 42px;
-  padding: 0.25rem;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0.15rem;
   text-decoration: none;
   color: var(--travertine);
 }
@@ -227,9 +233,9 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 30px;
+  min-width: 28px;
   height: 24px;
-  padding: 0 0.5rem;
+  padding: 0 0.45rem;
   border-radius: 999px;
   border: 1px solid rgba(252, 250, 246, 0.45);
   background-color: rgba(255, 255, 255, 0.08);
@@ -253,11 +259,14 @@ a:hover {
 @media (min-width: 768px) {
   .concept-banner {
     font-size: 0.8rem;
+    line-height: 1.35;
     padding: 0.22rem 1.5rem;
   }
 
   .concept-banner__inner {
+    display: flex;
     justify-content: space-between;
+    gap: 0.75rem;
   }
 }
 
@@ -1349,7 +1358,460 @@ textarea.app-input {
 }
 
 /* ==========================================================================
-   7. Mobile Bottom Action Bar
+   7. View Transitions, Scroll Progress, Mood Sync & Above-the-Fold Mobile Hero
+   ========================================================================== */
+@view-transition {
+  navigation: auto;
+}
+
+.scroll-progress-rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--claret) 0%, #C89236 100%);
+  pointer-events: none;
+  z-index: 30;
+  transition: transform 0.08s linear;
+}
+
+.appbar-mood-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--stone);
+  gap: 2px;
+}
+
+.appbar-mood-switch__btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ink-muted);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.3rem 0.5rem;
+  min-height: 34px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.appbar-mood-switch__btn[aria-pressed="true"] {
+  background-color: var(--claret);
+  color: #FFFFFF;
+}
+
+@media (max-width: 419px) {
+  .app-brand__meta {
+    display: none;
+  }
+  .app-brand__title {
+    font-size: 1.28rem;
+  }
+  .app-brand__icon {
+    width: 28px;
+    height: 28px;
+  }
+  .appbar-cta {
+    min-height: 38px;
+    padding: 0 0.72rem;
+    font-size: 0.75rem;
+  }
+  .appbar-mood-switch__btn {
+    padding: 0.25rem 0.42rem;
+    font-size: 0.66rem;
+    min-height: 32px;
+  }
+}
+
+/* Lead Hero Photo spans full 2-col mosaic width with 16:10 crop */
+.piazza-photo-card--lead {
+  grid-column: 1 / -1;
+}
+
+.piazza-photo-card--lead .piazza-photo-card__img-wrap {
+  aspect-ratio: 16 / 10;
+}
+
+/* Above-the-Fold Mobile Hero Visual (< 920px): Visual Mosaic Placed First */
+@media (max-width: 919px) {
+  .piazza-section {
+    padding: 1rem 0 2.1rem;
+  }
+
+  .hero-app-card {
+    padding: 0.95rem 0.85rem;
+    gap: 1.05rem;
+  }
+
+  .hero-dual-visuals {
+    order: -1;
+    gap: 0.55rem;
+  }
+}
+
+.is-lightbox-trigger {
+  cursor: pointer;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .is-lightbox-trigger img {
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .is-lightbox-trigger:hover img {
+    transform: scale(1.028);
+  }
+}
+
+/* Evening Carta Visual Banner */
+.carta-app-banner {
+  margin: 0 0 0.35rem;
+  background-color: var(--travertine);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.5rem 0.6rem;
+}
+
+.carta-app-banner__media {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.carta-app-banner__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carta-app-banner figcaption {
+  padding: 0.45rem 0.25rem 0.05rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   8. 1-Tap Experience Presets, Micro-Toast, Lightbox & Owner Summary Ticket
+   ========================================================================== */
+.app-presets-bar {
+  margin-bottom: 1.15rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: var(--radius-md);
+  background-color: var(--stone);
+  border: 1px solid var(--border);
+}
+
+.app-presets-bar__label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--claret-deep);
+  margin-bottom: 0.5rem;
+}
+
+.app-presets-bar__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.app-preset-pill {
+  appearance: none;
+  min-height: 42px;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.app-preset-pill:hover,
+.app-preset-pill.is-active,
+.app-preset-pill[aria-pressed="true"] {
+  background-color: var(--claret);
+  border-color: var(--claret);
+  color: #FFFFFF;
+}
+
+.owner-receipt-ticket {
+  margin-top: 0.85rem;
+  padding: 0.95rem 1rem;
+  border-radius: 12px;
+  background-color: var(--surface);
+  border: 1px solid rgba(122, 31, 43, 0.35);
+  color: var(--ink);
+}
+
+.owner-receipt-ticket:empty {
+  display: none;
+}
+
+.owner-receipt-ticket__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.55rem;
+  margin-bottom: 0.7rem;
+  border-bottom: 1px dashed var(--border-strong);
+}
+
+.owner-receipt-ticket__title {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--claret-deep);
+}
+
+.owner-receipt-ticket__ref {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  background-color: var(--claret-tint);
+  color: var(--claret-deep);
+}
+
+.owner-receipt-ticket__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.85rem;
+}
+
+@media (min-width: 600px) {
+  .owner-receipt-ticket__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.owner-receipt-ticket__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.owner-receipt-ticket__row--full {
+  grid-column: 1 / -1;
+}
+
+.owner-receipt-ticket__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.owner-receipt-ticket__val {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.owner-receipt-ticket__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
+}
+
+.ticket-action-btn {
+  appearance: none;
+  min-height: 40px;
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--claret);
+  background-color: var(--claret);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ticket-action-btn--ghost {
+  background-color: var(--stone);
+  color: var(--ink);
+  border-color: var(--border-strong);
+}
+
+/* Native Accessible <dialog> Photo Lightbox */
+.photo-lightbox {
+  border: 1px solid var(--border-strong);
+  border-radius: 18px;
+  padding: 0;
+  max-width: min(92vw, 860px);
+  width: 100%;
+  background-color: #1D1315;
+  color: #FCFAF6;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+}
+
+.photo-lightbox::backdrop {
+  background: rgba(15, 10, 11, 0.75);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.photo-lightbox__shell {
+  padding: 0.9rem 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+@media (min-width: 680px) {
+  .photo-lightbox__shell {
+    padding: 1.1rem 1.35rem 1.35rem;
+  }
+}
+
+.photo-lightbox__topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.photo-lightbox__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.24rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(246, 226, 179, 0.45);
+  background: rgba(246, 226, 179, 0.14);
+  color: #F6E2B3;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.photo-lightbox__close {
+  appearance: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(252, 250, 246, 0.35);
+  background: rgba(255, 255, 255, 0.09);
+  color: #FCFAF6;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-lightbox__close:hover {
+  background: #FCFAF6;
+  color: var(--ink);
+}
+
+.photo-lightbox__media {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(252, 250, 246, 0.18);
+  background: #120B0D;
+  max-height: 62vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-lightbox__media img {
+  width: 100%;
+  max-height: 62vh;
+  object-fit: cover;
+}
+
+.photo-lightbox__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 680px) {
+  .photo-lightbox__footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.photo-lightbox__caption {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #EFE8DE;
+  max-width: 56ch;
+}
+
+.photo-lightbox__cta {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Micro-Toast */
+.micro-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(4.8rem + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 1250;
+  max-width: min(92vw, 440px);
+  padding: 0.62rem 1.05rem;
+  border-radius: 999px;
+  background-color: rgba(35, 24, 26, 0.96);
+  border: 1px solid #F6E2B3;
+  color: #FCFAF6;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(35, 24, 26, 0.35);
+  pointer-events: none;
+}
+
+@media (min-width: 960px) {
+  .micro-toast {
+    bottom: 1.5rem;
+  }
+}
+
+.micro-toast[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+   9. Frosted Glass Safe-Area Bottom Dock + Smart Auto-Clearance
    ========================================================================== */
 .app-bottom-dock {
   position: fixed;
@@ -1361,9 +1823,18 @@ textarea.app-input {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.35rem;
   padding: 0.45rem 0.65rem calc(0.45rem + env(safe-area-inset-bottom, 0px));
-  background-color: var(--surface);
-  border-top: 1px solid var(--border-strong);
-  box-shadow: 0 -6px 20px rgba(35, 24, 26, 0.08);
+  background-color: rgba(252, 250, 246, 0.95);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(196, 180, 157, 0.85);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 -10px 28px rgba(35, 24, 26, 0.14);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+}
+
+.app-bottom-dock.is-dock-hidden {
+  transform: translateY(130%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .app-bottom-dock__btn {
@@ -1392,6 +1863,18 @@ textarea.app-input {
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-ready.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1401,6 +1884,7 @@ textarea.app-input {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

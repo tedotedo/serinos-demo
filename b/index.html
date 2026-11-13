@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" data-mood="night">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +8,12 @@
   <title>Serino's Deli &amp; Wine Bar | Concept B — Cinema Notturno (5 Station Rd, Eaglescliffe)</title>
   <meta name="description" content="Concept B for Serino's Deli &amp; Wine Bar at 5 Station Road, Eaglescliffe — atmospheric station-arch editorial experience from morning espresso and brunch to evening wine and stone-baked pizza.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <script>
+    try {
+      var m = localStorage.getItem('serinos_mood');
+      if (m === 'day' || m === 'night') document.documentElement.setAttribute('data-mood', m);
+    } catch (e) {}
+  </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -28,6 +34,7 @@
 
   <!-- Minimal Cinema Glass Header -->
   <header class="cinema-header">
+    <div class="scroll-progress-rail" data-scroll-progress aria-hidden="true"></div>
     <div class="container cinema-header__inner">
       <a class="cinema-brand" href="#top" aria-label="Serino's Deli &amp; Wine Bar home">
         <span class="cinema-brand__emblem">
@@ -47,6 +54,10 @@
       </nav>
 
       <div class="cinema-header__cta">
+        <div class="cinema-mood-pill" role="group" aria-label="Sync daytime or evening mood">
+          <button class="cinema-mood-pill__btn" type="button" data-mood-btn="day" aria-pressed="false" title="Daytime Deli mood">☀ Day</button>
+          <button class="cinema-mood-pill__btn" type="button" data-mood-btn="night" aria-pressed="true" title="Evening Wine &amp; Pizza mood">☾ Night</button>
+        </div>
         <a class="cinema-tel-chip" href="tel:01642788864" aria-label="Call Serino's on 01642 788864">
           <span aria-hidden="true">☎</span> 01642 788864
         </a>
@@ -108,23 +119,43 @@
 
         <!-- Station-Arch Visual Cinema Frame + Morning Inset -->
         <div class="cinema-stage-visual">
-          <figure class="arch-cinema-frame">
+          <figure
+            class="arch-cinema-frame is-lightbox-trigger"
+            data-lightbox-src="../images/detail-2.jpg"
+            data-lightbox-alt="Atmospheric brick railway-arch wine bar table with ruby red wine and stone-baked Neapolitan pizza"
+            data-lightbox-caption="Sotto L'Arco · Sera — Brick railway-arch table with ruby red wine &amp; blistered stone-baked pizza (#3 Voted on This Is Yarm)."
+            data-lightbox-preset="wine-for-2"
+            data-lightbox-cta-label="Reserve Wine &amp; Pizza Table →"
+            tabindex="0"
+            role="button"
+            aria-label="Inspect larger illustrative photo: Brick railway-arch wine bar table with red wine and stone-baked pizza"
+          >
             <div class="arch-cinema-frame__media">
               <img
-                src="../images/feature.jpg"
+                src="../images/detail-2.jpg"
                 width="1200"
                 height="896"
-                alt="Candlelit evening table with red wine, charcuterie antipasti board and stone-baked pizza"
+                alt="Atmospheric brick railway-arch wine bar table with ruby red wine and stone-baked Neapolitan pizza"
               >
-              <span class="illus-badge">Illustrative image</span>
+              <span class="illus-badge">Illustrative image · Tap to zoom</span>
             </div>
             <figcaption class="arch-cinema-frame__caption">
-              <span><strong>Sera &amp; Enoteca:</strong> Curated pours, antipasti &amp; #3-voted pizza</span>
+              <span><strong>Sera &amp; Enoteca:</strong> Brick arch pours &amp; #3-voted stone-baked pizza</span>
               <span>Illustrative image</span>
             </figcaption>
           </figure>
 
-          <figure class="cinema-inset-card">
+          <figure
+            class="cinema-inset-card is-lightbox-trigger"
+            data-lightbox-src="../images/hero.jpg"
+            data-lightbox-alt="Sunlit morning barista flat white coffee and freshly prepared brunch dishes"
+            data-lightbox-caption="Mattina · 5 Station Road — #1 Breakfast &amp; #2 Coffee steps from Eaglescliffe Station."
+            data-lightbox-preset="brunch"
+            data-lightbox-cta-label="Book Morning Brunch Table →"
+            tabindex="0"
+            role="button"
+            aria-label="Inspect larger illustrative photo: Sunlit morning flat white coffee and brunch"
+          >
             <div class="cinema-inset-card__media">
               <img
                 src="../images/hero.jpg"
@@ -191,14 +222,34 @@
 
           <div class="reel-controls" aria-label="Scroll ritual reel">
             <span class="reel-counter" data-reel-counter aria-live="polite">01 / 04</span>
+            <div class="reel-dots" data-reel-dots role="group" aria-label="Jump to ritual act">
+              <button class="reel-dot is-active" type="button" data-reel-dot="0" aria-label="Act 1 of 4: Mattina" aria-current="true"></button>
+              <button class="reel-dot" type="button" data-reel-dot="1" aria-label="Act 2 of 4: Pranzo" aria-current="false"></button>
+              <button class="reel-dot" type="button" data-reel-dot="2" aria-label="Act 3 of 4: Aperitivo" aria-current="false"></button>
+              <button class="reel-dot" type="button" data-reel-dot="3" aria-label="Act 4 of 4: Forno" aria-current="false"></button>
+            </div>
             <button class="reel-arrow" type="button" data-reel-prev aria-label="Previous ritual act">←</button>
             <button class="reel-arrow" type="button" data-reel-next aria-label="Next ritual act">→</button>
           </div>
         </div>
 
         <div class="ritual-reel" data-ritual-reel tabindex="0" role="region" aria-label="Four-act hospitality reel">
-          <!-- Act 01 -->
+          <!-- Act 01: hero.jpg -->
           <article class="ritual-card" data-reel-card>
+            <figure
+              class="ritual-card__figure is-lightbox-trigger"
+              data-lightbox-src="../images/hero.jpg"
+              data-lightbox-alt="Sunlit morning barista flat white coffee and freshly prepared brunch dishes"
+              data-lightbox-caption="Act I · Mattina — Barista espresso, flat whites &amp; #1-voted brunch plates steps from Eaglescliffe Station."
+              data-lightbox-preset="brunch"
+              data-lightbox-cta-label="Book Morning Brunch Table →"
+              tabindex="0"
+              role="button"
+              aria-label="Inspect larger illustrative photo: Mattina espresso and brunch"
+            >
+              <img src="../images/hero.jpg" width="1440" height="803" loading="lazy" alt="Sunlit morning barista flat white coffee and freshly prepared brunch dishes">
+              <span class="illus-badge illus-badge--sm">Illustrative image</span>
+            </figure>
             <div class="ritual-card__top">
               <span class="ritual-card__act">Act I · Mattina</span>
               <span class="ritual-card__badge">★ #1 Breakfast · #2 Coffee</span>
@@ -216,8 +267,22 @@
             </div>
           </article>
 
-          <!-- Act 02 -->
+          <!-- Act 02: detail-1.jpg -->
           <article class="ritual-card" data-reel-card>
+            <figure
+              class="ritual-card__figure is-lightbox-trigger"
+              data-lightbox-src="../images/detail-1.jpg"
+              data-lightbox-alt="Sunlit Carrara marble Italian deli counter with rosemary focaccia, sliced salumi, olives and Parmigiano"
+              data-lightbox-caption="Act II · Pranzo — Carrara marble deli counter stacked with rosemary focaccia, sliced salumi, olives &amp; Parmigiano."
+              data-lightbox-preset=""
+              data-lightbox-cta-label="Reserve Midday Deli Table →"
+              tabindex="0"
+              role="button"
+              aria-label="Inspect larger illustrative photo: Carrara marble Italian deli counter"
+            >
+              <img src="../images/detail-1.jpg" width="1200" height="896" loading="lazy" alt="Sunlit Carrara marble Italian deli counter with rosemary focaccia, sliced salumi, olives and Parmigiano">
+              <span class="illus-badge illus-badge--sm">Illustrative image</span>
+            </figure>
             <div class="ritual-card__top">
               <span class="ritual-card__act">Act II · Pranzo</span>
               <span class="ritual-card__badge">Dine In · Train · Uber Eats</span>
@@ -235,8 +300,22 @@
             </div>
           </article>
 
-          <!-- Act 03 -->
+          <!-- Act 03: feature.jpg -->
           <article class="ritual-card ritual-card--sera" data-reel-card>
+            <figure
+              class="ritual-card__figure is-lightbox-trigger"
+              data-lightbox-src="../images/feature.jpg"
+              data-lightbox-alt="Candlelit evening table with red wine, charcuterie antipasti board and stone-baked pizza"
+              data-lightbox-caption="Act III · Aperitivo — Curated Italian reds, spritzes &amp; generous charcuterie and artisan cheese grazing boards."
+              data-lightbox-preset="wine-for-2"
+              data-lightbox-cta-label="Reserve Evening Wine Table →"
+              tabindex="0"
+              role="button"
+              aria-label="Inspect larger illustrative photo: Candlelit evening wine and antipasti grazing board"
+            >
+              <img src="../images/feature.jpg" width="1200" height="896" loading="lazy" alt="Candlelit evening table with red wine, charcuterie antipasti board and stone-baked pizza">
+              <span class="illus-badge illus-badge--sm">Illustrative image</span>
+            </figure>
             <div class="ritual-card__top">
               <span class="ritual-card__act">Act III · Aperitivo</span>
               <span class="ritual-card__badge">Candlelit Enoteca</span>
@@ -254,8 +333,22 @@
             </div>
           </article>
 
-          <!-- Act 04 -->
+          <!-- Act 04: detail-2.jpg -->
           <article class="ritual-card ritual-card--sera" data-reel-card>
+            <figure
+              class="ritual-card__figure is-lightbox-trigger"
+              data-lightbox-src="../images/detail-2.jpg"
+              data-lightbox-alt="Atmospheric brick railway-arch wine bar table with ruby red wine and stone-baked Neapolitan pizza"
+              data-lightbox-caption="Act IV · Forno — Brick railway-arch table with ruby red wine &amp; blistered stone-baked pizza (#3 Voted on This Is Yarm)."
+              data-lightbox-preset="wine-for-2"
+              data-lightbox-cta-label="Book Pizza &amp; Wine Table →"
+              tabindex="0"
+              role="button"
+              aria-label="Inspect larger illustrative photo: Brick railway-arch wine bar table with red wine and stone-baked pizza"
+            >
+              <img src="../images/detail-2.jpg" width="1200" height="896" loading="lazy" alt="Atmospheric brick railway-arch wine bar table with ruby red wine and stone-baked Neapolitan pizza">
+              <span class="illus-badge illus-badge--sm">Illustrative image</span>
+            </figure>
             <div class="ritual-card__top">
               <span class="ritual-card__act">Act IV · Forno</span>
               <span class="ritual-card__badge">★ #3 Pizza · This Is Yarm</span>
@@ -484,6 +577,16 @@
           </div>
 
           <form class="cinema-form" data-demo-form novalidate>
+            <!-- 1-Tap Experience Presets -->
+            <div class="experience-presets-box" aria-label="1-tap experience presets">
+              <span class="experience-presets-box__label">1-Tap Experience Presets:</span>
+              <div class="experience-presets-row" role="group" aria-label="Choose an occasion preset">
+                <button class="experience-preset-pill" type="button" data-serinos-preset="brunch" aria-pressed="false">☀ Morning Brunch Table (#1 Voted)</button>
+                <button class="experience-preset-pill" type="button" data-serinos-preset="wine-for-2" aria-pressed="false">🍷 Candlelit Wine &amp; Pizza for 2</button>
+                <button class="experience-preset-pill" type="button" data-serinos-preset="group-arch" aria-pressed="false">🥂 Station-Arch Group Evening</button>
+              </div>
+            </div>
+
             <!-- 1-Tap Quick Date Chips -->
             <div class="form-field form-field--full">
               <label for="b-res-date">Preferred Date <span class="req" aria-hidden="true">*</span></label>
@@ -610,6 +713,7 @@
             <div class="demo-confirm" data-demo-status role="status" aria-live="polite" tabindex="-1" hidden>
               <p class="demo-confirm__title">Demo only – in the live site this would go straight to Serino's Deli &amp; Wine Bar.</p>
               <p class="demo-confirm__detail" data-demo-summary></p>
+              <div class="owner-receipt-ticket" data-owner-ticket></div>
             </div>
           </form>
         </div>
@@ -705,6 +809,25 @@
     <a class="floating-dock__item" href="#carta">Menus</a>
     <a class="floating-dock__item floating-dock__item--primary" href="#reserve">Book</a>
   </nav>
+
+  <!-- Native Accessible Photo Lightbox -->
+  <dialog class="photo-lightbox" id="photo-lightbox" aria-label="Editorial photo preview">
+    <div class="photo-lightbox__shell" data-lightbox-shell>
+      <div class="photo-lightbox__topbar">
+        <span class="photo-lightbox__tag">Illustrative image</span>
+        <button class="photo-lightbox__close" type="button" data-lightbox-close aria-label="Close photo preview">✕</button>
+      </div>
+      <div class="photo-lightbox__media">
+        <img src="../images/detail-2.jpg" alt="" data-lightbox-img width="1200" height="896">
+      </div>
+      <div class="photo-lightbox__footer">
+        <p class="photo-lightbox__caption" data-lightbox-caption></p>
+        <a class="btn btn--vermilion photo-lightbox__cta" href="#reserve" data-lightbox-cta>Reserve a Table →</a>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="micro-toast" data-micro-toast role="status" aria-live="polite" hidden></div>
 
   <script src="js/app.js"></script>
 </body>

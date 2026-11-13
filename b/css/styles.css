@@ -169,20 +169,19 @@ a:hover {
   background-color: var(--noir-deep);
   color: var(--crema);
   border-bottom: 1px solid var(--gold-line);
-  font-size: 0.74rem;
-  line-height: 1.35;
-  padding: 0.3rem 0.65rem;
-  text-align: center;
+  font-size: 0.68rem;
+  line-height: 1.25;
+  padding: 0.18rem 0.55rem;
+  text-align: left;
 }
 
 .concept-banner__inner {
   max-width: var(--container);
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: center;
-  gap: 0.2rem 0.75rem;
+  gap: 0.35rem;
 }
 
 .concept-banner p {
@@ -194,11 +193,12 @@ a:hover {
 .concept-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 0.15rem;
+  gap: 0.08rem;
   flex-shrink: 0;
 }
 
 .concept-switcher__label {
+  display: none;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -207,13 +207,19 @@ a:hover {
   margin-right: 0.2rem;
 }
 
+@media (min-width: 580px) {
+  .concept-switcher__label {
+    display: inline;
+  }
+}
+
 .concept-switcher__pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 42px;
-  min-height: 42px;
-  padding: 0.25rem;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0.15rem;
   text-decoration: none;
   color: var(--crema);
 }
@@ -222,9 +228,9 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 30px;
+  min-width: 28px;
   height: 24px;
-  padding: 0 0.5rem;
+  padding: 0 0.45rem;
   border-radius: 999px;
   border: 1px solid rgba(212, 168, 87, 0.5);
   background-color: rgba(255, 255, 255, 0.05);
@@ -249,11 +255,14 @@ a:hover {
 @media (min-width: 768px) {
   .concept-banner {
     font-size: 0.8rem;
+    line-height: 1.35;
     padding: 0.22rem 1.5rem;
   }
 
   .concept-banner__inner {
+    display: flex;
     justify-content: space-between;
+    gap: 0.75rem;
   }
 }
 
@@ -1414,7 +1423,520 @@ textarea.form-control {
 }
 
 /* ==========================================================================
-   9. Floating Mobile Pill Dock
+   9. View Transitions, Scroll Progress, Mood Sync & Mobile Above-the-Fold Hero
+   ========================================================================== */
+@view-transition {
+  navigation: auto;
+}
+
+.scroll-progress-rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--vermilion) 0%, var(--gold-bright) 100%);
+  pointer-events: none;
+  z-index: 30;
+  transition: transform 0.08s linear;
+}
+
+html[data-mood="day"] .cinema-hero__glow {
+  background: radial-gradient(circle, rgba(212, 168, 87, 0.28) 0%, rgba(184, 51, 42, 0.1) 46%, rgba(18, 12, 14, 0) 74%);
+}
+
+/* Header Day/Night Mood Pill */
+.cinema-mood-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 999px;
+  border: 1px solid var(--gold-line);
+  background-color: rgba(11, 7, 8, 0.72);
+  gap: 2px;
+}
+
+.cinema-mood-pill__btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--crema-soft);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.32rem 0.52rem;
+  min-height: 36px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.cinema-mood-pill__btn[aria-pressed="true"] {
+  background-color: var(--gold);
+  color: var(--noir-deep);
+}
+
+@media (max-width: 419px) {
+  .cinema-brand__sub {
+    display: none;
+  }
+  .cinema-brand__name {
+    font-size: 1.28rem;
+  }
+  .cinema-brand__emblem {
+    width: 30px;
+    height: 30px;
+  }
+  .btn--compact {
+    padding: 0.38rem 0.72rem;
+    font-size: 0.75rem;
+    min-height: 40px;
+  }
+  .cinema-mood-pill__btn {
+    padding: 0.28rem 0.42rem;
+    font-size: 0.66rem;
+    min-height: 34px;
+  }
+}
+
+/* Above-the-Fold Mobile Hero Visual (< 960px): Lush 16:10 Frame at Top of Stage */
+@media (max-width: 959px) {
+  .cinema-hero {
+    padding: 1rem 0 2.1rem;
+  }
+
+  .cinema-hero__grid {
+    gap: 1.25rem;
+  }
+
+  .cinema-stage-visual {
+    order: -1;
+    gap: 0.6rem;
+  }
+
+  .arch-cinema-frame {
+    border-radius: 18px;
+    padding: 0.45rem;
+  }
+
+  .arch-cinema-frame__media {
+    border-radius: 12px;
+    aspect-ratio: 16 / 10;
+  }
+
+  .arch-cinema-frame__caption {
+    padding: 0.45rem 0.25rem 0.1rem;
+    font-size: 0.74rem;
+  }
+
+  .cinema-inset-card {
+    grid-template-columns: 84px 1fr;
+    gap: 0.6rem;
+    padding: 0.45rem;
+  }
+
+  .cinema-inset-card__caption {
+    font-size: 0.75rem;
+  }
+}
+
+/* ==========================================================================
+   10. 4-Photo Ritual Reel Cards, Counter Pill & Active Dot Indicators
+   ========================================================================== */
+.is-lightbox-trigger {
+  cursor: pointer;
+}
+
+.ritual-card__figure {
+  position: relative;
+  margin: 0 0 0.85rem;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border: 1px solid rgba(212, 168, 87, 0.28);
+  background-color: var(--noir-deep);
+}
+
+.ritual-card__figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ritual-card:hover .ritual-card__figure img,
+  .is-lightbox-trigger:hover img {
+    transform: scale(1.03);
+  }
+}
+
+.reel-controls {
+  flex-wrap: wrap;
+}
+
+.reel-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0.2rem 0.72rem;
+  border-radius: 999px;
+  border: 1px solid var(--gold-line);
+  background-color: var(--noir-card);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold-bright);
+  margin-right: 0.15rem;
+}
+
+.reel-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-right: 0.2rem;
+}
+
+.reel-dot {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  width: 28px;
+  height: 36px;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reel-dot::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: rgba(245, 234, 216, 0.28);
+  transition: width 0.22s ease, background-color 0.22s ease;
+}
+
+.reel-dot.is-active::before,
+.reel-dot[aria-current="true"]::before {
+  width: 20px;
+  background-color: var(--gold-bright);
+}
+
+/* ==========================================================================
+   11. 1-Tap Experience Presets, Micro-Toast & Owner Summary Ticket
+   ========================================================================== */
+.experience-presets-box {
+  padding: 0.9rem 0.95rem;
+  border-radius: var(--radius-md);
+  background-color: rgba(11, 7, 8, 0.65);
+  border: 1px solid var(--gold-line);
+}
+
+.experience-presets-box__label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: 0.55rem;
+}
+
+.experience-presets-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.experience-preset-pill {
+  appearance: none;
+  min-height: 42px;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--gold-line);
+  background-color: var(--noir-card);
+  color: var(--crema);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.14s ease;
+}
+
+.experience-preset-pill:hover,
+.experience-preset-pill.is-active,
+.experience-preset-pill[aria-pressed="true"] {
+  background-color: var(--vermilion);
+  border-color: var(--gold-bright);
+  color: #FFFFFF;
+}
+
+.owner-receipt-ticket {
+  margin-top: 0.85rem;
+  padding: 0.95rem 1rem;
+  border-radius: 10px;
+  background-color: rgba(11, 7, 8, 0.72);
+  border: 1px solid rgba(230, 191, 115, 0.45);
+}
+
+.owner-receipt-ticket:empty {
+  display: none;
+}
+
+.owner-receipt-ticket__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed rgba(230, 191, 115, 0.35);
+}
+
+.owner-receipt-ticket__title {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+}
+
+.owner-receipt-ticket__ref {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(212, 168, 87, 0.18);
+  color: var(--gold-bright);
+}
+
+.owner-receipt-ticket__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.9rem;
+}
+
+@media (min-width: 600px) {
+  .owner-receipt-ticket__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.owner-receipt-ticket__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.owner-receipt-ticket__row--full {
+  grid-column: 1 / -1;
+}
+
+.owner-receipt-ticket__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--crema-dim);
+}
+
+.owner-receipt-ticket__val {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  overflow-wrap: anywhere;
+}
+
+.owner-receipt-ticket__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(245, 234, 216, 0.16);
+}
+
+.ticket-action-btn {
+  appearance: none;
+  min-height: 40px;
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--gold-bright);
+  background-color: var(--gold-bright);
+  color: var(--noir-deep);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ticket-action-btn--ghost {
+  background-color: transparent;
+  color: var(--crema);
+  border-color: rgba(245, 234, 216, 0.45);
+}
+
+/* Native Accessible <dialog> Photo Lightbox */
+.photo-lightbox {
+  border: 1px solid var(--gold);
+  border-radius: 16px;
+  padding: 0;
+  max-width: min(92vw, 860px);
+  width: 100%;
+  background-color: #140B0E;
+  color: var(--crema);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.82);
+  overflow: hidden;
+}
+
+.photo-lightbox::backdrop {
+  background: rgba(8, 5, 6, 0.8);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.photo-lightbox__shell {
+  padding: 0.9rem 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+@media (min-width: 680px) {
+  .photo-lightbox__shell {
+    padding: 1.1rem 1.35rem 1.35rem;
+  }
+}
+
+.photo-lightbox__topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.photo-lightbox__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.24rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--gold-line);
+  background: rgba(212, 168, 87, 0.14);
+  color: var(--gold-bright);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.photo-lightbox__close {
+  appearance: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--gold-line);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--crema);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-lightbox__close:hover {
+  background: var(--gold-bright);
+  color: var(--noir-deep);
+}
+
+.photo-lightbox__media {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--rule-subtle);
+  background: var(--noir-deep);
+  max-height: 62vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-lightbox__media img {
+  width: 100%;
+  max-height: 62vh;
+  object-fit: cover;
+}
+
+.photo-lightbox__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 680px) {
+  .photo-lightbox__footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.photo-lightbox__caption {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--crema-soft);
+  max-width: 56ch;
+}
+
+.photo-lightbox__cta {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Micro-Toast */
+.micro-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(4.9rem + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 1300;
+  max-width: min(92vw, 440px);
+  padding: 0.62rem 1.05rem;
+  border-radius: 999px;
+  background-color: rgba(20, 12, 15, 0.96);
+  border: 1px solid var(--gold-bright);
+  color: var(--crema);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65);
+  pointer-events: none;
+}
+
+@media (min-width: 960px) {
+  .micro-toast {
+    bottom: 1.5rem;
+  }
+}
+
+.micro-toast[hidden] {
+  display: none;
+}
+
+/* ==========================================================================
+   12. Frosted Glass Safe-Area Floating Pill Dock + Auto-Clearance
    ========================================================================== */
 .floating-dock {
   position: fixed;
@@ -1427,9 +1949,18 @@ textarea.form-control {
   gap: 0.35rem;
   padding: 0.35rem;
   border-radius: 999px;
-  background-color: rgba(11, 7, 8, 0.95);
-  border: 1px solid var(--gold);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65);
+  background-color: rgba(14, 9, 11, 0.95);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(212, 168, 87, 0.62);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 16px 38px rgba(0, 0, 0, 0.72);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+}
+
+.floating-dock.is-dock-hidden {
+  transform: translateY(130%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .floating-dock__item {
@@ -1453,6 +1984,19 @@ textarea.form-control {
 @media (min-width: 960px) {
   .floating-dock {
     display: none;
+  }
+}
+
+/* Below-the-fold Choreographed Reveal */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-ready.is-revealed {
+    opacity: 1;
+    transform: none;
   }
 }
 

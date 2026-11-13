@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" data-mood="day">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +8,12 @@
   <title>Serino's Deli &amp; Wine Bar | Concept C — Sunlit Piazza &amp; Booking App (5 Station Rd)</title>
   <meta name="description" content="Concept C for Serino's Deli &amp; Wine Bar at 5 Station Road, Eaglescliffe — sunlit Bento overview, segmented Day/Night menu switcher, and 3-step Resy-style table booking app.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <script>
+    try {
+      var m = localStorage.getItem('serinos_mood');
+      if (m === 'day' || m === 'night') document.documentElement.setAttribute('data-mood', m);
+    } catch (e) {}
+  </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -28,6 +34,7 @@
 
   <!-- Sticky Sunlit App Header + Pill Nav -->
   <header class="piazza-appbar">
+    <div class="scroll-progress-rail" data-scroll-progress aria-hidden="true"></div>
     <div class="container piazza-appbar__top">
       <a class="app-brand" href="#overview">
         <img class="app-brand__icon" src="../images/logo-mark.svg" width="34" height="34" alt="">
@@ -38,6 +45,10 @@
       </a>
 
       <div class="appbar-actions">
+        <div class="appbar-mood-switch" role="group" aria-label="Switch daytime or evening mood">
+          <button class="appbar-mood-switch__btn" type="button" data-mood-btn="day" aria-pressed="true" title="Daytime Deli mood">☀ Day</button>
+          <button class="appbar-mood-switch__btn" type="button" data-mood-btn="night" aria-pressed="false" title="Evening Wine &amp; Pizza mood">☾ Night</button>
+        </div>
         <a class="appbar-call" href="tel:01642788864" aria-label="Call 01642 788864">01642 788864</a>
         <a class="appbar-cta" href="#book-table">Book Table</a>
       </div>
@@ -80,7 +91,17 @@
           </div>
 
           <div class="hero-dual-visuals">
-            <figure class="piazza-photo-card">
+            <figure
+              class="piazza-photo-card piazza-photo-card--lead is-lightbox-trigger"
+              data-lightbox-src="../images/hero.jpg"
+              data-lightbox-alt="Warm sunlit morning table with barista flat white coffee and brunch dishes"
+              data-lightbox-caption="☀ Mattina · 5 Station Road — Barista flat white coffee &amp; #1-voted brunch plates steps from Eaglescliffe Station."
+              data-lightbox-preset="brunch"
+              data-lightbox-cta-label="Book Morning Brunch Table →"
+              tabindex="0"
+              role="button"
+              aria-label="Inspect larger illustrative photo: Sunlit morning espresso and brunch"
+            >
               <div class="piazza-photo-card__img-wrap">
                 <img
                   src="../images/hero.jpg"
@@ -88,25 +109,60 @@
                   height="803"
                   alt="Warm sunlit morning table with barista flat white coffee and brunch dishes"
                 >
-                <span class="photo-tag">Illustrative image</span>
+                <span class="photo-tag">Illustrative image · Tap to zoom</span>
               </div>
               <figcaption>
-                <strong>☀ Daytime Deli &amp; Brunch</strong> · Illustrative image
+                <strong>☀ Daytime Deli &amp; #1 Brunch</strong> · Illustrative image
               </figcaption>
             </figure>
 
-            <figure class="piazza-photo-card">
+            <figure
+              class="piazza-photo-card is-lightbox-trigger"
+              data-lightbox-src="../images/detail-1.jpg"
+              data-lightbox-alt="Sunlit Carrara marble Italian deli counter with rosemary focaccia, sliced salumi, olives and Parmigiano"
+              data-lightbox-caption="☀ Banco Gastronomia — Carrara marble deli counter with rosemary focaccia, sliced salumi, olives &amp; Parmigiano."
+              data-lightbox-preset=""
+              data-lightbox-cta-label="Book Midday Deli Table →"
+              tabindex="0"
+              role="button"
+              aria-label="Inspect larger illustrative photo: Carrara marble Italian deli counter"
+            >
               <div class="piazza-photo-card__img-wrap">
                 <img
-                  src="../images/feature.jpg"
+                  src="../images/detail-1.jpg"
                   width="1200"
                   height="896"
-                  alt="Evening wine bar table with red wine glasses, antipasti sharing board and stone-baked pizza"
+                  alt="Sunlit Carrara marble Italian deli counter with rosemary focaccia, sliced salumi, olives and Parmigiano"
                 >
                 <span class="photo-tag">Illustrative image</span>
               </div>
               <figcaption>
-                <strong>☾ Evening Wine &amp; Pizza</strong> · Illustrative image
+                <strong>☀ Marble Deli Counter</strong> · Illustrative image
+              </figcaption>
+            </figure>
+
+            <figure
+              class="piazza-photo-card is-lightbox-trigger"
+              data-lightbox-src="../images/detail-2.jpg"
+              data-lightbox-alt="Atmospheric brick railway-arch wine bar table with ruby red wine and stone-baked Neapolitan pizza"
+              data-lightbox-caption="☾ Sotto L'Arco — Brick railway-arch table with ruby red wine &amp; blistered stone-baked pizza (#3 Voted on This Is Yarm)."
+              data-lightbox-preset="wine-for-2"
+              data-lightbox-cta-label="Book Wine &amp; Pizza Table →"
+              tabindex="0"
+              role="button"
+              aria-label="Inspect larger illustrative photo: Brick railway-arch wine bar table with red wine and stone-baked pizza"
+            >
+              <div class="piazza-photo-card__img-wrap">
+                <img
+                  src="../images/detail-2.jpg"
+                  width="1200"
+                  height="896"
+                  alt="Atmospheric brick railway-arch wine bar table with ruby red wine and stone-baked Neapolitan pizza"
+                >
+                <span class="photo-tag">Illustrative image</span>
+              </div>
+              <figcaption>
+                <strong>☾ Arch Wine &amp; #3 Pizza</strong> · Illustrative image
               </figcaption>
             </figure>
           </div>
@@ -266,6 +322,33 @@
           </div>
 
           <div class="clean-menu-card clean-menu-card--evening">
+            <figure
+              class="carta-app-banner is-lightbox-trigger"
+              data-lightbox-src="../images/feature.jpg"
+              data-lightbox-alt="Evening wine bar table with red wine glasses, antipasti sharing board and stone-baked pizza"
+              data-lightbox-caption="☾ Enoteca &amp; Antipasti — Candlelit sharing boards of cured salumi, cheeses &amp; olives poured with curated Italian reds."
+              data-lightbox-preset="wine-for-2"
+              data-lightbox-cta-label="Reserve Wine &amp; Pizza Table →"
+              tabindex="0"
+              role="button"
+              aria-label="Inspect larger illustrative photo: Candlelit evening wine and antipasti sharing board"
+            >
+              <div class="carta-app-banner__media">
+                <img
+                  src="../images/feature.jpg"
+                  width="1200"
+                  height="896"
+                  loading="lazy"
+                  alt="Evening wine bar table with red wine glasses, antipasti sharing board and stone-baked pizza"
+                >
+                <span class="photo-tag">Illustrative image · Tap to zoom</span>
+              </div>
+              <figcaption>
+                <span><strong>Candlelit Antipasti &amp; Wine</strong> — Sharing charcuterie, cheeses &amp; curated pours</span>
+                <span>Illustrative image</span>
+              </figcaption>
+            </figure>
+
             <div class="clean-menu-group" data-night-section="boards">
               <div class="clean-menu-group__head">
                 <h3>Antipasti &amp; Charcuterie Grazing Boards</h3>
@@ -360,6 +443,16 @@
             <p class="piazza-sub">
               Choose brunch, lunch, or evening wine &amp; pizza. Prefer to book by phone? Call <a href="tel:01642788864"><strong>01642 788864</strong></a>.
             </p>
+          </div>
+
+          <!-- 1-Tap Experience Presets -->
+          <div class="app-presets-bar" aria-label="1-tap booking experience presets">
+            <span class="app-presets-bar__label">1-Tap Experience Presets (Fills Steps 1 &amp; 2 Instantly):</span>
+            <div class="app-presets-bar__pills" role="group" aria-label="Experience presets">
+              <button class="app-preset-pill" type="button" data-serinos-preset="brunch" aria-pressed="false">☀ Morning Brunch Table (#1 Voted)</button>
+              <button class="app-preset-pill" type="button" data-serinos-preset="wine-for-2" aria-pressed="false">🍷 Candlelit Wine &amp; Pizza for 2</button>
+              <button class="app-preset-pill" type="button" data-serinos-preset="group-arch" aria-pressed="false">🥂 Station-Arch Group Evening</button>
+            </div>
           </div>
 
           <!-- Progress Track -->
@@ -584,6 +677,7 @@
               <div class="app-demo-banner" data-demo-status role="status" aria-live="polite" tabindex="-1" hidden>
                 <p class="app-demo-banner__headline">Demo only – in the live site this would go straight to Serino's Deli &amp; Wine Bar.</p>
                 <p class="app-demo-banner__meta" data-demo-summary></p>
+                <div class="owner-receipt-ticket" data-owner-ticket></div>
               </div>
             </div>
           </form>
@@ -661,6 +755,25 @@
     <a class="app-bottom-dock__btn" href="#la-carta">La Carta</a>
     <a class="app-bottom-dock__btn app-bottom-dock__btn--primary" href="#book-table">Book Table</a>
   </nav>
+
+  <!-- Native Accessible Photo Lightbox -->
+  <dialog class="photo-lightbox" id="photo-lightbox" aria-label="Editorial photo preview">
+    <div class="photo-lightbox__shell" data-lightbox-shell>
+      <div class="photo-lightbox__topbar">
+        <span class="photo-lightbox__tag">Illustrative image</span>
+        <button class="photo-lightbox__close" type="button" data-lightbox-close aria-label="Close photo preview">✕</button>
+      </div>
+      <div class="photo-lightbox__media">
+        <img src="../images/hero.jpg" alt="" data-lightbox-img width="1200" height="896">
+      </div>
+      <div class="photo-lightbox__footer">
+        <p class="photo-lightbox__caption" data-lightbox-caption></p>
+        <a class="btn btn--claret photo-lightbox__cta" href="#book-table" data-lightbox-cta>Reserve a Table →</a>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="micro-toast" data-micro-toast role="status" aria-live="polite" hidden></div>
 
   <script src="js/app.js"></script>
 </body>
